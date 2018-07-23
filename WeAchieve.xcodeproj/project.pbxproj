@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		628CA71821069672004E2708 /* InternshipsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628CA71721069672004E2708 /* InternshipsModel.swift */; };
+		628CA71A21069683004E2708 /* ScholarshipsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628CA71921069683004E2708 /* ScholarshipsModel.swift */; };
+		628CA71C210697CB004E2708 /* OpportunitiesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628CA71B210697CB004E2708 /* OpportunitiesTableView.swift */; };
+		628CA71E21069F42004E2708 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 628CA71D21069F42004E2708 /* GoogleService-Info.plist */; };
 		62CCF628210645BD002905E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CCF627210645BD002905E6 /* AppDelegate.swift */; };
 		62CCF62A210645BD002905E6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CCF629210645BD002905E6 /* ViewController.swift */; };
 		62CCF62D210645BD002905E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62CCF62B210645BD002905E6 /* Main.storyboard */; };
@@ -16,6 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		628CA71721069672004E2708 /* InternshipsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternshipsModel.swift; sourceTree = "<group>"; };
+		628CA71921069683004E2708 /* ScholarshipsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScholarshipsModel.swift; sourceTree = "<group>"; };
+		628CA71B210697CB004E2708 /* OpportunitiesTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpportunitiesTableView.swift; sourceTree = "<group>"; };
+		628CA71D21069F42004E2708 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		62CCF624210645BD002905E6 /* WeAchieve.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeAchieve.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62CCF627210645BD002905E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62CCF629210645BD002905E6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +66,7 @@
 		628CA714210691B9004E2708 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				628CA71B210697CB004E2708 /* OpportunitiesTableView.swift */,
 			);
 			name = Views;
 			path = ..;
@@ -66,6 +75,8 @@
 		628CA715210691C4004E2708 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				628CA71721069672004E2708 /* InternshipsModel.swift */,
+				628CA71921069683004E2708 /* ScholarshipsModel.swift */,
 			);
 			name = Models;
 			path = ..;
@@ -110,6 +121,7 @@
 				62CCF62E210645BE002905E6 /* Assets.xcassets */,
 				62CCF630210645BE002905E6 /* LaunchScreen.storyboard */,
 				62CCF633210645BE002905E6 /* Info.plist */,
+				628CA71D21069F42004E2708 /* GoogleService-Info.plist */,
 			);
 			path = WeAchieve;
 			sourceTree = "<group>";
@@ -184,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				62CCF632210645BE002905E6 /* LaunchScreen.storyboard in Resources */,
+				628CA71E21069F42004E2708 /* GoogleService-Info.plist in Resources */,
 				62CCF62F210645BE002905E6 /* Assets.xcassets in Resources */,
 				62CCF62D210645BD002905E6 /* Main.storyboard in Resources */,
 			);
@@ -201,13 +214,17 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-WeAchieve/Pods-WeAchieve-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -240,6 +257,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				62CCF62A210645BD002905E6 /* ViewController.swift in Sources */,
+				628CA71821069672004E2708 /* InternshipsModel.swift in Sources */,
+				628CA71C210697CB004E2708 /* OpportunitiesTableView.swift in Sources */,
+				628CA71A21069683004E2708 /* ScholarshipsModel.swift in Sources */,
 				62CCF628210645BD002905E6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -392,7 +412,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.makeschool.WeAchieve;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mbatilando.WeAchieve;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -411,7 +431,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.makeschool.WeAchieve;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mbatilando.WeAchieve;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

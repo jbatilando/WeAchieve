@@ -14,7 +14,7 @@ Scholarships - title, amount, deadline
 
 
 ## Views
-OpportunitiesTableViewController - User sees opportunities they searched
+OpportunitiesTableView - User sees opportunities they searched
 
 ## Controllers
 SearchViewController - User can search opportunities here
@@ -34,4 +34,4 @@ Chegg API - used for scholarship search
 
 Glassdoor API - used for internship search
 
-Icons used from Flaticon 
+Icons from https://icons8.com/
