@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		628CA71821069672004E2708 /* InternshipsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628CA71721069672004E2708 /* InternshipsModel.swift */; };
-		628CA71A21069683004E2708 /* ScholarshipsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628CA71921069683004E2708 /* ScholarshipsModel.swift */; };
-		628CA71C210697CB004E2708 /* OpportunitiesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628CA71B210697CB004E2708 /* OpportunitiesTableView.swift */; };
+		628CA71821069672004E2708 /* OpportunitiesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628CA71721069672004E2708 /* OpportunitiesModel.swift */; };
+		628CA71C210697CB004E2708 /* SearchViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628CA71B210697CB004E2708 /* SearchViewControllerCell.swift */; };
 		628CA71E21069F42004E2708 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 628CA71D21069F42004E2708 /* GoogleService-Info.plist */; };
+		62C4BD722107EC70008C2840 /* InternshipDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C4BD712107EC70008C2840 /* InternshipDetailsViewController.swift */; };
+		62C4BD742107EE39008C2840 /* ScholarshipsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C4BD732107EE39008C2840 /* ScholarshipsDetailsViewController.swift */; };
 		62CCF628210645BD002905E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CCF627210645BD002905E6 /* AppDelegate.swift */; };
-		62CCF62A210645BD002905E6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CCF629210645BD002905E6 /* ViewController.swift */; };
+		62CCF62A210645BD002905E6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CCF629210645BD002905E6 /* SearchViewController.swift */; };
 		62CCF62D210645BD002905E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62CCF62B210645BD002905E6 /* Main.storyboard */; };
 		62CCF62F210645BE002905E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62CCF62E210645BE002905E6 /* Assets.xcassets */; };
 		62CCF632210645BE002905E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62CCF630210645BE002905E6 /* LaunchScreen.storyboard */; };
@@ -20,13 +21,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		628CA71721069672004E2708 /* InternshipsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternshipsModel.swift; sourceTree = "<group>"; };
-		628CA71921069683004E2708 /* ScholarshipsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScholarshipsModel.swift; sourceTree = "<group>"; };
-		628CA71B210697CB004E2708 /* OpportunitiesTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpportunitiesTableView.swift; sourceTree = "<group>"; };
+		628CA71721069672004E2708 /* OpportunitiesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpportunitiesModel.swift; sourceTree = "<group>"; };
+		628CA71B210697CB004E2708 /* SearchViewControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewControllerCell.swift; sourceTree = "<group>"; };
 		628CA71D21069F42004E2708 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		62C4BD712107EC70008C2840 /* InternshipDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InternshipDetailsViewController.swift; path = /Users/miguelbatilando/Documents/WeAchieve/InternshipDetailsViewController.swift; sourceTree = "<absolute>"; };
+		62C4BD732107EE39008C2840 /* ScholarshipsDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScholarshipsDetailsViewController.swift; sourceTree = "<group>"; };
 		62CCF624210645BD002905E6 /* WeAchieve.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeAchieve.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62CCF627210645BD002905E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		62CCF629210645BD002905E6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		62CCF629210645BD002905E6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		62CCF62C210645BD002905E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		62CCF62E210645BE002905E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		62CCF631210645BE002905E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -59,6 +61,8 @@
 		628CA71321069178004E2708 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				62CCF62B210645BD002905E6 /* Main.storyboard */,
+				62CCF630210645BE002905E6 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -66,7 +70,7 @@
 		628CA714210691B9004E2708 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				628CA71B210697CB004E2708 /* OpportunitiesTableView.swift */,
+				628CA71B210697CB004E2708 /* SearchViewControllerCell.swift */,
 			);
 			name = Views;
 			path = ..;
@@ -75,8 +79,7 @@
 		628CA715210691C4004E2708 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				628CA71721069672004E2708 /* InternshipsModel.swift */,
-				628CA71921069683004E2708 /* ScholarshipsModel.swift */,
+				628CA71721069672004E2708 /* OpportunitiesModel.swift */,
 			);
 			name = Models;
 			path = ..;
@@ -85,7 +88,9 @@
 		628CA716210691D0004E2708 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				62CCF629210645BD002905E6 /* ViewController.swift */,
+				62CCF629210645BD002905E6 /* SearchViewController.swift */,
+				62C4BD712107EC70008C2840 /* InternshipDetailsViewController.swift */,
+				62C4BD732107EE39008C2840 /* ScholarshipsDetailsViewController.swift */,
 			);
 			name = Controllers;
 			path = ..;
@@ -113,13 +118,11 @@
 			isa = PBXGroup;
 			children = (
 				62CCF627210645BD002905E6 /* AppDelegate.swift */,
+				628CA71321069178004E2708 /* Storyboards */,
 				628CA716210691D0004E2708 /* Controllers */,
 				628CA715210691C4004E2708 /* Models */,
 				628CA714210691B9004E2708 /* Views */,
-				628CA71321069178004E2708 /* Storyboards */,
-				62CCF62B210645BD002905E6 /* Main.storyboard */,
 				62CCF62E210645BE002905E6 /* Assets.xcassets */,
-				62CCF630210645BE002905E6 /* LaunchScreen.storyboard */,
 				62CCF633210645BE002905E6 /* Info.plist */,
 				628CA71D21069F42004E2708 /* GoogleService-Info.plist */,
 			);
@@ -256,11 +259,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62CCF62A210645BD002905E6 /* ViewController.swift in Sources */,
-				628CA71821069672004E2708 /* InternshipsModel.swift in Sources */,
-				628CA71C210697CB004E2708 /* OpportunitiesTableView.swift in Sources */,
-				628CA71A21069683004E2708 /* ScholarshipsModel.swift in Sources */,
+				62CCF62A210645BD002905E6 /* SearchViewController.swift in Sources */,
+				628CA71821069672004E2708 /* OpportunitiesModel.swift in Sources */,
+				62C4BD742107EE39008C2840 /* ScholarshipsDetailsViewController.swift in Sources */,
+				628CA71C210697CB004E2708 /* SearchViewControllerCell.swift in Sources */,
 				62CCF628210645BD002905E6 /* AppDelegate.swift in Sources */,
+				62C4BD722107EC70008C2840 /* InternshipDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
