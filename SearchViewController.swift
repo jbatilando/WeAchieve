@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
-class SearchViewController: UIViewController, UITableViewDataSource {
+class SearchViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate {
     
     // Variables
     var internshipArray = [Internship]()
@@ -28,9 +30,25 @@ class SearchViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
         setupInternships()
         setupScholarships()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let user = Auth.auth().currentUser {
+            self.performSegue(withIdentifier: "goToHome", sender: self)
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        print(searchBar.selectedScopeButtonIndex)
+        opportunityTableView.reloadData()
+    }
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchBar.selectedScopeButtonIndex == 0 {
@@ -52,7 +70,7 @@ class SearchViewController: UIViewController, UITableViewDataSource {
         scholarshipCell.companyOrAmount.text = scholarshipArray[indexPath.row].amount
         scholarshipCell.locationOrDeadline.text = scholarshipArray[indexPath.row].deadline
         
-        if searchBar.selectedScopeButtonIndex == 1 {
+        if searchBar.selectedScopeButtonIndex == 0 {
             return internshipCell
         } else {
             return scholarshipCell
