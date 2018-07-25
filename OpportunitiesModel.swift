@@ -14,7 +14,7 @@ class Internship {
     let location: String
     // let deadline: String
     
-    init(title: String, company: String, location: String) {
+    init(title: String, company: String, location: String, description: String) {
         self.title = title
         self.company = company
         self.location = location
@@ -27,7 +27,7 @@ class Scholarship {
     let amount: String
     let deadline: String
     
-    init(title: String, amount: String, deadline: String) {
+    init(title: String, amount: String, deadline: String, description: String) {
         self.title = title
         self.amount = amount
         self.deadline = deadline

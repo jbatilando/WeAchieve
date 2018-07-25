@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		623E0D2221081EAD008D8801 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623E0D2121081EAD008D8801 /* FavoritesViewController.swift */; };
 		628CA71821069672004E2708 /* OpportunitiesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628CA71721069672004E2708 /* OpportunitiesModel.swift */; };
 		628CA71C210697CB004E2708 /* SearchViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628CA71B210697CB004E2708 /* SearchViewControllerCell.swift */; };
 		628CA71E21069F42004E2708 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 628CA71D21069F42004E2708 /* GoogleService-Info.plist */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		623E0D2121081EAD008D8801 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		628CA71721069672004E2708 /* OpportunitiesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpportunitiesModel.swift; sourceTree = "<group>"; };
 		628CA71B210697CB004E2708 /* SearchViewControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewControllerCell.swift; sourceTree = "<group>"; };
 		628CA71D21069F42004E2708 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 		628CA716210691D0004E2708 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				623E0D2121081EAD008D8801 /* FavoritesViewController.swift */,
 				62CCF629210645BD002905E6 /* SearchViewController.swift */,
 				62C4BD712107EC70008C2840 /* InternshipDetailsViewController.swift */,
 				62C4BD732107EE39008C2840 /* ScholarshipsDetailsViewController.swift */,
@@ -261,6 +264,7 @@
 			files = (
 				62CCF62A210645BD002905E6 /* SearchViewController.swift in Sources */,
 				628CA71821069672004E2708 /* OpportunitiesModel.swift in Sources */,
+				623E0D2221081EAD008D8801 /* FavoritesViewController.swift in Sources */,
 				62C4BD742107EE39008C2840 /* ScholarshipsDetailsViewController.swift in Sources */,
 				628CA71C210697CB004E2708 /* SearchViewControllerCell.swift in Sources */,
 				62CCF628210645BD002905E6 /* AppDelegate.swift in Sources */,
