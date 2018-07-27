@@ -12,6 +12,10 @@ import FirebaseAuth
 
 class ProfileViewController: UIViewController {
     
+    // Need to display user email
+    @IBOutlet weak var userEmailLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

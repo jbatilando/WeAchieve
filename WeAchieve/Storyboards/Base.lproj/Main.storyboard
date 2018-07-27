@@ -56,6 +56,9 @@
                         <viewLayoutGuide key="safeArea" id="sNe-jH-jGQ"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Me" image="icons8-user-30" id="RhS-QL-hwG"/>
+                    <connections>
+                        <outlet property="userEmailLabel" destination="SSd-Fn-BfF" id="fF1-7y-Pyq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8wj-SF-iuq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -64,7 +67,7 @@
         <!--Favorites-->
         <scene sceneID="y79-hc-O2s">
             <objects>
-                <viewController id="YTs-Th-HwY" sceneMemberID="viewController">
+                <viewController id="YTs-Th-HwY" customClass="FavoritesViewController" customModule="WeAchieve" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cJd-Zu-rxs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -72,6 +75,28 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CYL-jH-bar">
                                 <rect key="frame" x="0.0" y="108" width="375" height="510"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favoriteInternshipCell" rowHeight="80" id="8OX-oz-t8y">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8OX-oz-t8y" id="Agb-Rr-A6B">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favoriteScholarshipCell" rowHeight="80" id="2du-Hi-sh6">
+                                        <rect key="frame" x="0.0" y="108" width="375" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2du-Hi-sh6" id="TQf-c3-cyZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="YTs-Th-HwY" id="wFX-Xl-mtB"/>
+                                    <outlet property="delegate" destination="YTs-Th-HwY" id="fsW-Tx-C4h"/>
+                                </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MVw-HQ-im9">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -99,6 +124,9 @@
                                     <segment title="Scholarships"/>
                                 </segments>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="segmentedControlDidChange:" destination="YTs-Th-HwY" eventType="valueChanged" id="ST2-jt-NrO"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.46666666670000001" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -117,6 +145,10 @@
                         <viewLayoutGuide key="safeArea" id="Vfu-Xj-5gx"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Favorites" image="icons8-star-30" id="yfR-WS-luj"/>
+                    <connections>
+                        <outlet property="favoritesTableView" destination="CYL-jH-bar" id="vSw-6u-ZAQ"/>
+                        <outlet property="segmentedControl" destination="Yod-2N-Nh3" id="RaZ-ll-elP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wKe-qX-TgO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -251,7 +283,7 @@
                                                     <rect key="frame" x="330" y="36" width="30" height="51.5"/>
                                                     <state key="normal" image="icons8-star-30"/>
                                                     <connections>
-                                                        <action selector="likeButtonPressed:" destination="He9-oA-yW4" eventType="touchUpInside" id="Dnb-kh-utf"/>
+                                                        <action selector="likeButtonPressed:" destination="CLb-Ef-u9T" eventType="touchUpInside" id="qR6-Lk-Wfz"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -269,7 +301,7 @@
                                             <outlet property="likeButton" destination="VEn-gr-JfU" id="LJk-X6-jIb"/>
                                             <outlet property="locationOrDeadline" destination="gN8-Uh-TXg" id="pjY-7P-A7K"/>
                                             <outlet property="title" destination="oD0-f5-9Q2" id="srf-Yv-JDl"/>
-                                            <segue destination="mRA-zx-y2v" kind="show" id="iJD-8p-24d"/>
+                                            <segue destination="mRA-zx-y2v" kind="show" identifier="goToInternship" id="iJD-8p-24d"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="scholarshipCell" rowHeight="125" id="CHK-1u-3NA" customClass="SearchViewControllerCell" customModule="WeAchieve" customModuleProvider="target">
@@ -310,7 +342,7 @@
                                                     <rect key="frame" x="330" y="36" width="30" height="51.5"/>
                                                     <state key="normal" image="icons8-star-30"/>
                                                     <connections>
-                                                        <action selector="likeButtonPressed:" destination="He9-oA-yW4" eventType="touchUpInside" id="buF-yM-o2n"/>
+                                                        <action selector="likeButtonPressed:" destination="CHK-1u-3NA" eventType="touchUpInside" id="98O-FY-gLW"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -328,7 +360,7 @@
                                             <outlet property="likeButton" destination="0hM-Im-ef0" id="pcn-of-ruy"/>
                                             <outlet property="locationOrDeadline" destination="giz-Pv-GH1" id="Mct-MQ-RFr"/>
                                             <outlet property="title" destination="k32-yt-0Xd" id="pex-1z-fn5"/>
-                                            <segue destination="7ys-OE-Yu5" kind="show" id="OvJ-n7-wfG"/>
+                                            <segue destination="7ys-OE-Yu5" kind="show" identifier="goToScholarship" id="OvJ-n7-wfG"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

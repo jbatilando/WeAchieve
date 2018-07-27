@@ -9,8 +9,42 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseDatabase
 
-class SearchViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate {
+class SearchViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate, SearchCellDelegate {
+    
+    // User ID
+    let userID = Auth.auth().currentUser?.uid
+    
+    // Variables
+    var incrementInternshipIndex = 0
+    var incrementScholarshipIndex = 0
+    
+    // Firebase Databse ref
+    var ref: DatabaseReference! = Database.database().reference()
+    
+    // Liked stuff stored in these arrays
+    var likedInternships = [Internship]()
+    var likedScholarships = [Scholarship]()
+    
+    // NS Arrays
+    var uploadInternships: NSMutableArray? // = [Internship]() as! NSMutableArray
+    
+    // Like button pressed
+    func likeButtonPressedForInternship(intershipVar: Internship) {
+        likedInternships.append(intershipVar)
+        let dict = intershipVar.convertToDict()
+        ref?.child("Users").child(userID!).child("Internships").child(String(incrementInternshipIndex)).updateChildValues(dict)
+        incrementInternshipIndex += 1
+    }
+    
+    func likeButtonPressedForScholarship(scholarshipVar: Scholarship) {
+        likedScholarships.append(scholarshipVar)
+        let dict = scholarshipVar.convertToDict()
+        ref?.child("Users").child(userID!).child("Scholarships").child(String(incrementScholarshipIndex)).updateChildValues(dict)
+        incrementScholarshipIndex += 1
+    }
+    
     
     // Variables
     var internshipArray = [Internship]()
@@ -22,12 +56,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
     @IBOutlet weak var opportunityTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    // Actions
-    @IBAction func likeButtonPressed(_ sender: UIButton) {
-        print("like button pressed")
-        
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
@@ -37,18 +65,12 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        if let user = Auth.auth().currentUser {
-            self.performSegue(withIdentifier: "goToHome", sender: self)
-        }
     }
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         print(searchBar.selectedScopeButtonIndex)
         opportunityTableView.reloadData()
     }
-    
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchBar.selectedScopeButtonIndex == 0 {
@@ -65,10 +87,17 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
         internshipCell.title.text = internshipArray[indexPath.row].title
         internshipCell.companyOrAmount.text = internshipArray[indexPath.row].company
         internshipCell.locationOrDeadline.text = internshipArray[indexPath.row].location
+        internshipCell.delegate = self
+        internshipCell.isScholarship = false
+        internshipCell.internshipVar = internshipArray[indexPath.row]
+        
         
         scholarshipCell.title.text = scholarshipArray[indexPath.row].title
         scholarshipCell.companyOrAmount.text = scholarshipArray[indexPath.row].amount
         scholarshipCell.locationOrDeadline.text = scholarshipArray[indexPath.row].deadline
+        scholarshipCell.delegate = self
+        scholarshipCell.isScholarship = true
+        scholarshipCell.schoalrshipVar = scholarshipArray[indexPath.row]
         
         if searchBar.selectedScopeButtonIndex == 0 {
             return internshipCell
@@ -76,9 +105,9 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
             return scholarshipCell
         }
         
-        return UITableViewCell()
     }
     
+    // Data
     private func setupInternships() {
         internshipArray.append(Internship(title: "iOS Developer", company: "Apple", location: "Cupertino", description: ""))
         internshipArray.append(Internship(title: "iOS Engineer", company: "Facebook", location: "Menlo Park", description: ""))

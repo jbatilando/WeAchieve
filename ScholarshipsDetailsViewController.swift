@@ -10,6 +10,8 @@ import UIKit
 
 class ScholarshipsDetailsViewController: UIViewController {
     
+    var scholarship: Scholarship?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
