@@ -19,6 +19,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
     // Variables
     var incrementInternshipIndex = 0
     var incrementScholarshipIndex = 0
+    var isLiked = false
     
     // Firebase Databse ref
     var ref: DatabaseReference! = Database.database().reference()
@@ -32,6 +33,14 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
     
     // Like button pressed
     func likeButtonPressedForInternship(intershipVar: Internship) {
+        intershipVar.isLiked = !intershipVar.isLiked
+        // print(intershipVar.isLiked)
+        if intershipVar.isLiked == true {
+            likedInternships.append(intershipVar)
+        } else {
+            // remove it from array
+            // change ui button color
+        }
         likedInternships.append(intershipVar)
         let dict = intershipVar.convertToDict()
         ref?.child("Users").child(userID!).child("Internships").child(String(incrementInternshipIndex)).updateChildValues(dict)
@@ -39,6 +48,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
     }
     
     func likeButtonPressedForScholarship(scholarshipVar: Scholarship) {
+        scholarshipVar.isLiked = !isLiked
+        // print(scholarshipVar.isLiked)
         likedScholarships.append(scholarshipVar)
         let dict = scholarshipVar.convertToDict()
         ref?.child("Users").child(userID!).child("Scholarships").child(String(incrementScholarshipIndex)).updateChildValues(dict)
@@ -109,15 +120,15 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
     
     // Data
     private func setupInternships() {
-        internshipArray.append(Internship(title: "iOS Developer", company: "Apple", location: "Cupertino", description: ""))
-        internshipArray.append(Internship(title: "iOS Engineer", company: "Facebook", location: "Menlo Park", description: ""))
-        internshipArray.append(Internship(title: "Munchie Expert", company: "Large Co.", location: "Your ass", description: ""))
+        internshipArray.append(Internship(title: "iOS Developer", company: "Apple", location: "Cupertino", description: "", isLiked: false))
+        internshipArray.append(Internship(title: "iOS Engineer", company: "Facebook", location: "Menlo Park", description: "", isLiked: false))
+        internshipArray.append(Internship(title: "Munchie Expert", company: "Large Co.", location: "Your ass", description: "", isLiked: false))
     }
     
     private func setupScholarships() {
-        scholarshipArray.append(Scholarship(title: "Latinos for America", amount: "$20000", deadline: "02/22/2019", description: ""))
-        scholarshipArray.append(Scholarship(title: "African-American Community", amount: "$3200", deadline: "03/12/2018", description: ""))
-        scholarshipArray.append(Scholarship(title: "Women in Tech", amount: "$5000", deadline: "02/22/2020", description: ""))
+        scholarshipArray.append(Scholarship(title: "Latinos for America", amount: "$20000", deadline: "02/22/2019", description: "", isLiked: false))
+        scholarshipArray.append(Scholarship(title: "African-American Community", amount: "$3200", deadline: "03/12/2018", description: "", isLiked: false))
+        scholarshipArray.append(Scholarship(title: "Women in Tech", amount: "$5000", deadline: "02/22/2020", description: "", isLiked: false))
     }
 
 

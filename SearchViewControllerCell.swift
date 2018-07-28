@@ -26,6 +26,7 @@ class SearchViewControllerCell: UITableViewCell {
     var isScholarship: Bool?
     var internshipVar: Internship?
     var schoalrshipVar: Scholarship?
+    var hasBeenLiked: Bool = false
 
     
     required init?(coder aDecoder: NSCoder) {

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		623E0D2221081EAD008D8801 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623E0D2121081EAD008D8801 /* FavoritesViewController.swift */; };
 		623E0D242108E378008D8801 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623E0D232108E378008D8801 /* LoginViewController.swift */; };
+		62514448210BDBB900AF5871 /* FavoriteCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62514447210BDBB900AF5871 /* FavoriteCells.swift */; };
 		628A05B621091749005475B1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628A05B521091749005475B1 /* ProfileViewController.swift */; };
 		628A05B8210A8BE2005475B1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628A05B7210A8BE2005475B1 /* User.swift */; };
 		628CA71821069672004E2708 /* OpportunitiesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628CA71721069672004E2708 /* OpportunitiesModel.swift */; };
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		623E0D2121081EAD008D8801 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		623E0D232108E378008D8801 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = WeAchieve/Storyboards/LoginViewController.swift; sourceTree = "<group>"; };
+		62514447210BDBB900AF5871 /* FavoriteCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCells.swift; sourceTree = "<group>"; };
 		628A05B521091749005475B1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		628A05B7210A8BE2005475B1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		628CA71721069672004E2708 /* OpportunitiesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpportunitiesModel.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 		628CA714210691B9004E2708 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				62514447210BDBB900AF5871 /* FavoriteCells.swift */,
 				628CA71B210697CB004E2708 /* SearchViewControllerCell.swift */,
 			);
 			name = Views;
@@ -286,6 +289,7 @@
 				62C4BD742107EE39008C2840 /* ScholarshipsDetailsViewController.swift in Sources */,
 				623E0D242108E378008D8801 /* LoginViewController.swift in Sources */,
 				628CA71C210697CB004E2708 /* SearchViewControllerCell.swift in Sources */,
+				62514448210BDBB900AF5871 /* FavoriteCells.swift in Sources */,
 				628A05B621091749005475B1 /* ProfileViewController.swift in Sources */,
 				62CCF628210645BD002905E6 /* AppDelegate.swift in Sources */,
 				628A05B8210A8BE2005475B1 /* User.swift in Sources */,

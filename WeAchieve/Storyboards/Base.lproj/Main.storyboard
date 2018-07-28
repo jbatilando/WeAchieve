@@ -76,21 +76,99 @@
                                 <rect key="frame" x="0.0" y="108" width="375" height="510"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favoriteInternshipCell" rowHeight="80" id="8OX-oz-t8y">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favoriteInternshipCell" rowHeight="125" id="8OX-oz-t8y" customClass="FavoritesCell" customModule="WeAchieve" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="125"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8OX-oz-t8y" id="Agb-Rr-A6B">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="124.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TtD-LV-Jn7">
+                                                    <rect key="frame" x="15" y="10" width="44.5" height="104.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHr-uu-ON2">
+                                                            <rect key="frame" x="0.0" y="0.0" width="44.5" height="35"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T4N-wd-qWJ">
+                                                            <rect key="frame" x="0.0" y="35" width="44.5" height="34.5"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWT-Ub-mOt">
+                                                            <rect key="frame" x="0.0" y="69.5" width="44.5" height="35"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="T4N-wd-qWJ" firstAttribute="height" secondItem="PHr-uu-ON2" secondAttribute="height" id="DvD-cD-7cJ"/>
+                                                        <constraint firstItem="HWT-Ub-mOt" firstAttribute="height" secondItem="PHr-uu-ON2" secondAttribute="height" id="Fk9-hz-Zhl"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="TtD-LV-Jn7" firstAttribute="top" secondItem="Agb-Rr-A6B" secondAttribute="top" constant="10" id="PX5-BN-YP8"/>
+                                                <constraint firstAttribute="bottom" secondItem="TtD-LV-Jn7" secondAttribute="bottom" constant="10" id="rvj-DX-Kpl"/>
+                                                <constraint firstItem="TtD-LV-Jn7" firstAttribute="leading" secondItem="Agb-Rr-A6B" secondAttribute="leading" constant="15" id="xhh-hQ-RJp"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="companyOrAMount" destination="T4N-wd-qWJ" id="8uT-qX-U08"/>
+                                            <outlet property="locationOrDeadline" destination="HWT-Ub-mOt" id="32H-Ld-mZr"/>
+                                            <outlet property="positionTitle" destination="PHr-uu-ON2" id="NU2-4V-7hW"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favoriteScholarshipCell" rowHeight="80" id="2du-Hi-sh6">
-                                        <rect key="frame" x="0.0" y="108" width="375" height="80"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favoriteScholarshipCell" rowHeight="125" id="FFs-MH-Hr9" customClass="FavoritesCell" customModule="WeAchieve" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="153" width="375" height="125"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2du-Hi-sh6" id="TQf-c3-cyZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FFs-MH-Hr9" id="Y8O-YB-8Vm">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="124.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PFd-41-4ie">
+                                                    <rect key="frame" x="15" y="10" width="44.5" height="104.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UkR-6y-U0x">
+                                                            <rect key="frame" x="0.0" y="0.0" width="44.5" height="35"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3aj-Ra-aMC">
+                                                            <rect key="frame" x="0.0" y="35" width="44.5" height="34.5"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAN-xS-aF4">
+                                                            <rect key="frame" x="0.0" y="69.5" width="44.5" height="35"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="3aj-Ra-aMC" firstAttribute="height" secondItem="UkR-6y-U0x" secondAttribute="height" id="BrW-p2-wZU"/>
+                                                        <constraint firstItem="FAN-xS-aF4" firstAttribute="height" secondItem="UkR-6y-U0x" secondAttribute="height" id="RgB-TD-ldl"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="PFd-41-4ie" secondAttribute="bottom" constant="10" id="Ul7-zm-nfQ"/>
+                                                <constraint firstItem="PFd-41-4ie" firstAttribute="top" secondItem="Y8O-YB-8Vm" secondAttribute="top" constant="10" id="bSg-VM-LZM"/>
+                                                <constraint firstItem="PFd-41-4ie" firstAttribute="leading" secondItem="Y8O-YB-8Vm" secondAttribute="leading" constant="15" id="pk7-jV-Blh"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="companyOrAMount" destination="3aj-Ra-aMC" id="RXH-9K-yq5"/>
+                                            <outlet property="locationOrDeadline" destination="FAN-xS-aF4" id="iGK-Sf-cnT"/>
+                                            <outlet property="positionTitle" destination="UkR-6y-U0x" id="l7z-8G-u4H"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -280,7 +358,7 @@
                                                     </constraints>
                                                 </stackView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VEn-gr-JfU">
-                                                    <rect key="frame" x="330" y="36" width="30" height="51.5"/>
+                                                    <rect key="frame" x="345" y="36" width="15" height="51.5"/>
                                                     <state key="normal" image="icons8-star-30"/>
                                                     <connections>
                                                         <action selector="likeButtonPressed:" destination="CLb-Ef-u9T" eventType="touchUpInside" id="qR6-Lk-Wfz"/>
@@ -339,7 +417,7 @@
                                                     </constraints>
                                                 </stackView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hM-Im-ef0">
-                                                    <rect key="frame" x="330" y="36" width="30" height="51.5"/>
+                                                    <rect key="frame" x="345" y="36" width="15" height="51.5"/>
                                                     <state key="normal" image="icons8-star-30"/>
                                                     <connections>
                                                         <action selector="likeButtonPressed:" destination="CHK-1u-3NA" eventType="touchUpInside" id="98O-FY-gLW"/>
@@ -645,7 +723,7 @@
     </scenes>
     <resources>
         <image name="icons8-home-30" width="30" height="30"/>
-        <image name="icons8-star-30" width="30" height="30"/>
+        <image name="icons8-star-30" width="15" height="15"/>
         <image name="icons8-user-30" width="30" height="30"/>
     </resources>
 </document>
