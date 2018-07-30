@@ -14,7 +14,6 @@ class FavoritesViewController: UIViewController, UITableViewDataSource {
     
     // Firebase ref
     var ref: DatabaseReference! = Database.database().reference()
-    var databaseHandle: DatabaseHandle?
     let userID = Auth.auth().currentUser?.uid
     
     // Outlets
@@ -35,23 +34,31 @@ class FavoritesViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
+        favoritesTableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // Retrieve Posts and listen for changes
+        
         ref?.child("Users").child(userID!).child("Internships").observeSingleEvent(of: .value, with: { (snapshot) in
-            // Take data from snapshot and put it into an array
-            print(snapshot.value!)
             for child in snapshot.children {
                 let childSnapshot = snapshot.childSnapshot(forPath: String(self.index))
-                let childValue = childSnapshot.value as! [String: Any]
-                let internship = Internship.init(dict: childValue)
+                if let childValue = childSnapshot.value as? [String: Any]? {
+                let internship = Internship.init(dict: childValue!)
                 self.favoritedInternshipsArray.append(internship)
                 self.index += 1
-                print(self.favoritedInternshipsArray)
+                }
+            }
+        })
+        
+        ref?.child("Users").child(userID!).child("Scholarships").observeSingleEvent(of: .value, with: { (snapshot) in
+            self.index = 0
+            for child in snapshot.children {
+                let childSnapshot = snapshot.childSnapshot(forPath: String(self.index))
+                if let childValue = childSnapshot.value as? [String: Any]? {
+                    let scholarship = Scholarship.init(dict: childValue!)
+                    self.favoritedScholarshipsArray.append(scholarship)
+                    self.index += 1
+                }
             }
         })
     }
@@ -70,10 +77,12 @@ class FavoritesViewController: UIViewController, UITableViewDataSource {
         let favoritedScholarshipcell = favoritesTableView.dequeueReusableCell(withIdentifier: "favoriteScholarshipCell", for: indexPath) as! FavoritesCell
 
         favoritedInternshipCell.positionTitle?.text = favoritedInternshipsArray[indexPath.row].title
-//        favoritedInternshipCell.positionTitle?.text = favoritedInternshipsArray[indexPath.row].company
-//        favoritedInternshipCell.positionTitle?.text = favoritedInternshipsArray[indexPath.row].company
-//
-        favoritedScholarshipcell.textLabel?.text = "Scholarship"
+        favoritedInternshipCell.companyOrAMount?.text = favoritedInternshipsArray[indexPath.row].company
+        favoritedInternshipCell.locationOrDeadline?.text = favoritedInternshipsArray[indexPath.row].location
+        
+        favoritedScholarshipcell.positionTitle?.text = favoritedScholarshipsArray[indexPath.row].title
+        favoritedScholarshipcell.companyOrAMount?.text = favoritedScholarshipsArray[indexPath.row].amount
+        favoritedScholarshipcell.locationOrDeadline?.text = favoritedScholarshipsArray[indexPath.row].deadline
 
         if segmentedControl.selectedSegmentIndex == 0 {
             return favoritedInternshipCell

@@ -52,4 +52,8 @@ class Scholarship {
                     "deadline": deadline]
         return dict
     }
+    
+    convenience init(dict: [String: Any]) {
+        self.init(title: dict["title"] as! String, amount: dict["amount"] as! String, deadline: dict["deadline"] as! String, description: "", isLiked: true)
+    }
 }

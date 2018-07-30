@@ -13,6 +13,16 @@ import FirebaseDatabase
 
 class LoginViewController: UIViewController {
     
+    // Dismiss keyboard
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        //or
+        //self.view.endEditing(true)
+        
+        return true
+    }
+    
     // Firebase ref
     var ref: DatabaseReference!
     
@@ -81,8 +91,5 @@ class LoginViewController: UIViewController {
                 }
             }
         }
-        
-        
     }
-    
 }

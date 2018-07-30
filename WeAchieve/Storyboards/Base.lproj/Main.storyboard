@@ -358,7 +358,7 @@
                                                     </constraints>
                                                 </stackView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VEn-gr-JfU">
-                                                    <rect key="frame" x="345" y="36" width="15" height="51.5"/>
+                                                    <rect key="frame" x="330" y="36" width="30" height="51.5"/>
                                                     <state key="normal" image="icons8-star-30"/>
                                                     <connections>
                                                         <action selector="likeButtonPressed:" destination="CLb-Ef-u9T" eventType="touchUpInside" id="qR6-Lk-Wfz"/>
@@ -417,7 +417,7 @@
                                                     </constraints>
                                                 </stackView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hM-Im-ef0">
-                                                    <rect key="frame" x="345" y="36" width="15" height="51.5"/>
+                                                    <rect key="frame" x="330" y="36" width="30" height="51.5"/>
                                                     <state key="normal" image="icons8-star-30"/>
                                                     <connections>
                                                         <action selector="likeButtonPressed:" destination="CHK-1u-3NA" eventType="touchUpInside" id="98O-FY-gLW"/>
@@ -723,7 +723,7 @@
     </scenes>
     <resources>
         <image name="icons8-home-30" width="30" height="30"/>
-        <image name="icons8-star-30" width="15" height="15"/>
+        <image name="icons8-star-30" width="30" height="30"/>
         <image name="icons8-user-30" width="30" height="30"/>
     </resources>
 </document>

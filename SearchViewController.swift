@@ -34,14 +34,13 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
     // Like button pressed
     func likeButtonPressedForInternship(intershipVar: Internship) {
         intershipVar.isLiked = !intershipVar.isLiked
-        // print(intershipVar.isLiked)
         if intershipVar.isLiked == true {
             likedInternships.append(intershipVar)
         } else {
             // remove it from array
             // change ui button color
         }
-        likedInternships.append(intershipVar)
+        // likedInternships.append(intershipVar)
         let dict = intershipVar.convertToDict()
         ref?.child("Users").child(userID!).child("Internships").child(String(incrementInternshipIndex)).updateChildValues(dict)
         incrementInternshipIndex += 1
@@ -49,8 +48,12 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
     
     func likeButtonPressedForScholarship(scholarshipVar: Scholarship) {
         scholarshipVar.isLiked = !isLiked
-        // print(scholarshipVar.isLiked)
-        likedScholarships.append(scholarshipVar)
+        if scholarshipVar.isLiked == true {
+            likedScholarships.append(scholarshipVar)
+        } else {
+            // remove from array
+            // uncolor button
+        }
         let dict = scholarshipVar.convertToDict()
         ref?.child("Users").child(userID!).child("Scholarships").child(String(incrementScholarshipIndex)).updateChildValues(dict)
         incrementScholarshipIndex += 1
@@ -79,7 +82,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
     }
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        print(searchBar.selectedScopeButtonIndex)
         opportunityTableView.reloadData()
     }
     
