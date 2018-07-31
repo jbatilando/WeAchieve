@@ -100,8 +100,8 @@
 		628CA716210691D0004E2708 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				623E0D2121081EAD008D8801 /* FavoritesViewController.swift */,
 				628A05B521091749005475B1 /* ProfileViewController.swift */,
+				623E0D2121081EAD008D8801 /* FavoritesViewController.swift */,
 				62CCF629210645BD002905E6 /* SearchViewController.swift */,
 				62C4BD712107EC70008C2840 /* InternshipDetailsViewController.swift */,
 				62C4BD732107EE39008C2840 /* ScholarshipsDetailsViewController.swift */,

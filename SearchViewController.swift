@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
-class SearchViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate, SearchCellDelegate {
+class SearchViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate, SearchCellDelegate, UITableViewDelegate {
     
     // User ID
     let userID = Auth.auth().currentUser?.uid
@@ -120,11 +120,29 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
         
     }
     
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if searchBar.selectedScopeButtonIndex == 0 {
+        let InternshipVC = storyboard?.instantiateViewController(withIdentifier: "InternshipViewController") as! InternshipDetailsViewController
+        InternshipVC.internshipName = internshipArray[indexPath.row].title
+        InternshipVC.internshipCo = internshipArray[indexPath.row].company
+        InternshipVC.internshipLoc = internshipArray[indexPath.row].location
+        self.navigationController?.pushViewController(InternshipVC, animated: true)
+        } else {
+            let ScholarshipsVC = storyboard?.instantiateViewController(withIdentifier: "ScholarshipViewController") as! ScholarshipsDetailsViewController
+            ScholarshipsVC.scholarshipName = scholarshipArray[indexPath.row].title
+            ScholarshipsVC.scholarshipAmnt = scholarshipArray[indexPath.row].amount
+            ScholarshipsVC.scholarshipDueDate = scholarshipArray[indexPath.row].deadline
+            self.navigationController?.pushViewController(ScholarshipsVC, animated: true)
+        }
+    }
+    
     // Data
     private func setupInternships() {
         internshipArray.append(Internship(title: "iOS Developer", company: "Apple", location: "Cupertino", description: "", isLiked: false))
         internshipArray.append(Internship(title: "iOS Engineer", company: "Facebook", location: "Menlo Park", description: "", isLiked: false))
-        internshipArray.append(Internship(title: "Munchie Expert", company: "Large Co.", location: "Your ass", description: "", isLiked: false))
+        internshipArray.append(Internship(title: "Expert", company: "Large Co.", location: "You", description: "", isLiked: false))
     }
     
     private func setupScholarships() {
@@ -132,7 +150,5 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
         scholarshipArray.append(Scholarship(title: "African-American Community", amount: "$3200", deadline: "03/12/2018", description: "", isLiked: false))
         scholarshipArray.append(Scholarship(title: "Women in Tech", amount: "$5000", deadline: "02/22/2020", description: "", isLiked: false))
     }
-
-
 }
 

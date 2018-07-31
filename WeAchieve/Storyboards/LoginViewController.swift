@@ -11,23 +11,15 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
-class LoginViewController: UIViewController {
-    
-    // Dismiss keyboard
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        
-        textField.resignFirstResponder()
-        //or
-        //self.view.endEditing(true)
-        
-        return true
-    }
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     // Firebase ref
     var ref: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     }
     
     // Variables
@@ -84,6 +76,8 @@ class LoginViewController: UIViewController {
                     let userID = user!.user.uid
                     self.ref = Database.database().reference()
                     self.ref.child("Users").child(userID).setValue(["email" : email, "password": password])
+                    self.emailTextField.text = ""
+                    self.passwordTextField.text = ""
                     self.performSegue(withIdentifier: "goToHome", sender: self)
                 } else {
                         print("error")
@@ -91,5 +85,19 @@ class LoginViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    // Dismiss keyboard
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        //or
+        //self.view.endEditing(true)
+        
+        return true
     }
 }
