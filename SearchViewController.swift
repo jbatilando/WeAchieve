@@ -64,6 +64,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
     var internshipArray = [Internship]()
     var scholarshipArray = [Scholarship]()
     var searchInternship = [Internship]()
+    var searchScholarship = [Scholarship]()
     var isSearching = false
     var buttonState = false
     let favoritesVC = FavoritesViewController(nibName: "FavoritesViewController", bundle: nil)
@@ -88,9 +89,15 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchInternship = internshipArray.filter({$0.title.lowercased().prefix(searchText.count) == searchText.lowercased()})
-        isSearching = true
-        opportunityTableView.reloadData()
+        if searchBar.selectedScopeButtonIndex == 0 {
+            searchInternship = internshipArray.filter({$0.title.lowercased().prefix(searchText.count) == searchText.lowercased()})
+            isSearching = true
+            opportunityTableView.reloadData()
+        } else {
+            searchScholarship = scholarshipArray.filter({$0.title.lowercased().prefix(searchText.count) == searchText.lowercased()})
+            isSearching = true
+            opportunityTableView.reloadData()
+        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -105,7 +112,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
             if searchBar.selectedScopeButtonIndex == 0 {
                 return searchInternship.count
             } else {
-                return scholarshipArray.count
+                return searchScholarship.count
             }
         } else {
             if searchBar.selectedScopeButtonIndex == 0 {
@@ -121,7 +128,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
         let scholarshipCell = tableView.dequeueReusableCell(withIdentifier: "scholarshipCell", for: indexPath) as! SearchViewControllerCell
         
         if isSearching {
-            
             if searchBar.selectedScopeButtonIndex == 0 {
                 internshipCell.title.text = searchInternship[indexPath.row].title
                 internshipCell.companyOrAmount.text = searchInternship[indexPath.row].company
@@ -131,15 +137,14 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
                 internshipCell.internshipVar = searchInternship[indexPath.row]
                 return internshipCell
             } else {
-                scholarshipCell.title.text = scholarshipArray[indexPath.row].title
-                scholarshipCell.companyOrAmount.text = scholarshipArray[indexPath.row].amount
-                scholarshipCell.locationOrDeadline.text = scholarshipArray[indexPath.row].deadline
+                scholarshipCell.title.text = searchScholarship[indexPath.row].title
+                scholarshipCell.companyOrAmount.text = searchScholarship[indexPath.row].amount
+                scholarshipCell.locationOrDeadline.text = searchScholarship[indexPath.row].deadline
                 scholarshipCell.delegate = self
                 scholarshipCell.isScholarship = true
-                scholarshipCell.schoalrshipVar = scholarshipArray[indexPath.row]
+                scholarshipCell.schoalrshipVar = searchScholarship[indexPath.row]
                 return scholarshipCell
             }
-            
         } else {
         if searchBar.selectedScopeButtonIndex == 0 {
             internshipCell.title.text = internshipArray[indexPath.row].title
