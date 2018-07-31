@@ -127,12 +127,14 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             InternshipVC.internshipName = favoritedInternshipsArray[indexPath.row].title
             InternshipVC.internshipCo = favoritedInternshipsArray[indexPath.row].company
             InternshipVC.internshipLoc = favoritedInternshipsArray[indexPath.row].location
+            InternshipVC.internshipDesc = favoritedInternshipsArray[indexPath.row].description
             self.navigationController?.pushViewController(InternshipVC, animated: true)
         } else {
             let ScholarshipsVC = storyboard?.instantiateViewController(withIdentifier: "ScholarshipViewController") as! ScholarshipsDetailsViewController
             ScholarshipsVC.scholarshipName = favoritedScholarshipsArray[indexPath.row].title
             ScholarshipsVC.scholarshipAmnt = favoritedScholarshipsArray[indexPath.row].amount
             ScholarshipsVC.scholarshipDueDate = favoritedScholarshipsArray[indexPath.row].deadline
+            ScholarshipsVC.scholarshipDesc = favoritedScholarshipsArray[indexPath.row].description
             self.navigationController?.pushViewController(ScholarshipsVC, animated: true)
         }
     }
