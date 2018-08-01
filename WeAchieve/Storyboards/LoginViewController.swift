@@ -20,71 +20,61 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         emailTextField.delegate = self
         passwordTextField.delegate = self
+        
+        loginButton.layer.cornerRadius = loginButton.frame.size.height/2
+        loginButton.layer.borderWidth = 1
+        loginButton.layer.borderColor = UIColor.white.cgColor
+        loginButton.layer.masksToBounds = true
+        registerButton.layer.cornerRadius = registerButton.frame.size.height/2
+        registerButton.layer.borderWidth = 1
+        registerButton.layer.borderColor = UIColor.white.cgColor
+        registerButton.layer.masksToBounds = true
     }
-    
-    // Variables
-    var signInState: Bool = true
     
     // Outlets
-    @IBOutlet weak var signInSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var signInLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var registerButton: UIButton!
     
-    // Actions
-    @IBAction func signInSegmentedControlChanged(_ sender: UISegmentedControl) {
-        signInState = !signInState
-        
-        if signInState {
-            signInLabel.text = "Log In"
-            signInButton.setTitle("Sign In", for: .normal)
-        } else {
-            signInLabel.text = "Register"
-            signInButton.setTitle("Register", for: .normal)
-        }
-        
-    }
-    
-    @IBAction func signInButtonPressed(_ sender: UIButton) {
-        
-        // Check if email and password are filled in
+    @IBAction func loginButtonTapped(_ sender: Any) {
         if let email = emailTextField.text , let password = passwordTextField.text {
-            if signInState {
-                // Sign in with Firebase
-                Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-                    // Check if user is not nil
-                    if user != nil {
-                        // User found, go to home
-                        self.dismiss(animated: false, completion: nil)
-                        self.performSegue(withIdentifier: "goToHome", sender: self)
-                        self.emailTextField.text = ""
-                        self.passwordTextField.text = ""
-                    } else {
-                        // User not found, alert
-                        let alert = UIAlertController(title: "Error occurred", message: nil, preferredStyle: .alert)
-                        let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
-                        alert.addAction(okButton)
-                        self.present(alert, animated: true, completion: nil)
-                    }
-                }
-            } else  {
-                // Register with Firebase
-                Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+            Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
                 if user != nil {
-                    print("user created")
-                    let userID = user!.user.uid
-                    self.ref = Database.database().reference()
-                    self.ref.child("Users").child(userID).setValue(["email" : email, "password": password])
+                    self.dismiss(animated: false, completion: nil)
+                    self.performSegue(withIdentifier: "goToHome", sender: self)
                     self.emailTextField.text = ""
                     self.passwordTextField.text = ""
-                    self.performSegue(withIdentifier: "goToHome", sender: self)
                 } else {
-                        print("error")
-                    }
+                    let alert = UIAlertController(title: "Error occurred", message: nil, preferredStyle: .alert)
+                    let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alert.addAction(okButton)
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
         }
+    }
+    
+    @IBAction func registerButtonTapped(_ sender: Any) {
+        if let email = emailTextField.text , let password = passwordTextField.text {
+        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+            if user != nil {
+                print("user created")
+                let userID = user!.user.uid
+                self.ref = Database.database().reference()
+                self.ref.child("Users").child(userID).setValue(["email" : email, "password": password])
+                self.emailTextField.text = ""
+                self.passwordTextField.text = ""
+                self.performSegue(withIdentifier: "goToHome", sender: self)
+            } else {
+                let alert = UIAlertController(title: "Error occurred", message: nil, preferredStyle: .alert)
+                let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            }
+        }
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

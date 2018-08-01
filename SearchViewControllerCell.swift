@@ -37,10 +37,10 @@ class SearchViewControllerCell: UITableViewCell {
     @IBAction func likeButtonPressed(_ sender: Any) {
         if isScholarship == true {
             delegate?.likeButtonPressedForScholarship(scholarshipVar: schoalrshipVar!)
-            likeButton.setImage(#imageLiteral(resourceName: "icons8-christmas-star-filled-30"), for: .normal)
+            likeButton.setImage(#imageLiteral(resourceName: "icons8-star-filled-24"), for: .normal)
         } else {
             delegate?.likeButtonPressedForInternship(intershipVar: internshipVar!)
-            likeButton.setImage(#imageLiteral(resourceName: "icons8-christmas-star-filled-30"), for: .normal)
+            likeButton.setImage(#imageLiteral(resourceName: "icons8-star-filled-24"), for: .normal)
         }
     }
 }

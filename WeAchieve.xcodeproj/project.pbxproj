@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		623193E6211119F400DFBD76 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623193E5211119F400DFBD76 /* UIView+Extension.swift */; };
+		623193EA21111BB400DFBD76 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623193E921111BB400DFBD76 /* Colors.swift */; };
 		623E0D2221081EAD008D8801 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623E0D2121081EAD008D8801 /* FavoritesViewController.swift */; };
 		623E0D242108E378008D8801 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623E0D232108E378008D8801 /* LoginViewController.swift */; };
 		62514448210BDBB900AF5871 /* FavoriteCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62514447210BDBB900AF5871 /* FavoriteCells.swift */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		623193E5211119F400DFBD76 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		623193E921111BB400DFBD76 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		623E0D2121081EAD008D8801 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		623E0D232108E378008D8801 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = WeAchieve/Storyboards/LoginViewController.swift; sourceTree = "<group>"; };
 		62514447210BDBB900AF5871 /* FavoriteCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCells.swift; sourceTree = "<group>"; };
@@ -80,6 +84,7 @@
 		628CA714210691B9004E2708 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				623193E5211119F400DFBD76 /* UIView+Extension.swift */,
 				62514447210BDBB900AF5871 /* FavoriteCells.swift */,
 				628CA71B210697CB004E2708 /* SearchViewControllerCell.swift */,
 			);
@@ -90,6 +95,7 @@
 		628CA715210691C4004E2708 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				623193E921111BB400DFBD76 /* Colors.swift */,
 				628CA71721069672004E2708 /* OpportunitiesModel.swift */,
 				628A05B7210A8BE2005475B1 /* User.swift */,
 			);
@@ -240,6 +246,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/TextFieldEffects/TextFieldEffects.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -250,6 +257,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TextFieldEffects.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -286,9 +294,11 @@
 				62CCF62A210645BD002905E6 /* SearchViewController.swift in Sources */,
 				628CA71821069672004E2708 /* OpportunitiesModel.swift in Sources */,
 				623E0D2221081EAD008D8801 /* FavoritesViewController.swift in Sources */,
+				623193EA21111BB400DFBD76 /* Colors.swift in Sources */,
 				62C4BD742107EE39008C2840 /* ScholarshipsDetailsViewController.swift in Sources */,
 				623E0D242108E378008D8801 /* LoginViewController.swift in Sources */,
 				628CA71C210697CB004E2708 /* SearchViewControllerCell.swift in Sources */,
+				623193E6211119F400DFBD76 /* UIView+Extension.swift in Sources */,
 				62514448210BDBB900AF5871 /* FavoriteCells.swift in Sources */,
 				628A05B621091749005475B1 /* ProfileViewController.swift in Sources */,
 				62CCF628210645BD002905E6 /* AppDelegate.swift in Sources */,

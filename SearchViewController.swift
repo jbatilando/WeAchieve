@@ -76,6 +76,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
+        searchBar.layer.borderWidth = 1
+        searchBar.layer.borderColor = Colors.linkedInBlue.cgColor
         setupInternships()
         setupScholarships()
     }
@@ -102,7 +104,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isSearching = false
-        searchBar.text = ""
+        //searchBar.text = ""
+        view.endEditing(true)
         opportunityTableView.reloadData()
     }
     

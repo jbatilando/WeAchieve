@@ -34,11 +34,6 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        favoritesTableView.reloadData()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
         ref?.child("Users").child(userID!).child("Internships").observeSingleEvent(of: .value, with: { (snapshot) in
             for child in snapshot.children {
                 let childSnapshot = snapshot.childSnapshot(forPath: String(self.index))
@@ -48,16 +43,16 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                         self.favoritedInternshipsArray.append(internship)
                     } else  {
                         for i in (0 ..< self.favoritedInternshipsArray.count) {
-                        var cur = self.favoritedInternshipsArray[i]
-                        if cur.title != internship.title && cur.company != internship.company {
-                            if cur.location != internship.location {
-                                // && other attribute {
-                                // append
-                                self.favoritedInternshipsArray.append(internship)
+                            var cur = self.favoritedInternshipsArray[i]
+                            if cur.title != internship.title && cur.company != internship.company {
+                                if cur.location != internship.location {
+                                    // && other attribute {
+                                    // append
+                                    self.favoritedInternshipsArray.append(internship)
+                                }
                             }
                         }
-                }
-            }
+                    }
                     self.index += 1
                 }
             }
@@ -72,19 +67,70 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                     if self.favoritedScholarshipsArray.isEmpty {
                         self.favoritedScholarshipsArray.append(scholarship)
                     } else {
-                    for i in (0 ..< self.favoritedScholarshipsArray.count) {
-                        var cur = self.favoritedScholarshipsArray[i]
-                        if cur.title != scholarship.title && cur.amount != scholarship.amount {
-                            if cur.deadline != scholarship.deadline {
-                                self.favoritedScholarshipsArray.append(scholarship)
+                        for i in (0 ..< self.favoritedScholarshipsArray.count) {
+                            var cur = self.favoritedScholarshipsArray[i]
+                            if cur.title != scholarship.title && cur.amount != scholarship.amount {
+                                if cur.deadline != scholarship.deadline {
+                                    self.favoritedScholarshipsArray.append(scholarship)
+                                }
                             }
                         }
                     }
-                }
                     self.index += 1
                 }
             }
         })
+        favoritesTableView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+//        ref?.child("Users").child(userID!).child("Internships").observeSingleEvent(of: .value, with: { (snapshot) in
+//            for child in snapshot.children {
+//                let childSnapshot = snapshot.childSnapshot(forPath: String(self.index))
+//                if let childValue = childSnapshot.value as? [String: Any]? {
+//                    let internship = Internship.init(dict: childValue!)
+//                    if self.favoritedInternshipsArray.isEmpty {
+//                        self.favoritedInternshipsArray.append(internship)
+//                    } else  {
+//                        for i in (0 ..< self.favoritedInternshipsArray.count) {
+//                        var cur = self.favoritedInternshipsArray[i]
+//                        if cur.title != internship.title && cur.company != internship.company {
+//                            if cur.location != internship.location {
+//                                // && other attribute {
+//                                // append
+//                                self.favoritedInternshipsArray.append(internship)
+//                            }
+//                        }
+//                }
+//            }
+//                    self.index += 1
+//                }
+//            }
+//        })
+//
+//        ref?.child("Users").child(userID!).child("Scholarships").observeSingleEvent(of: .value, with: { (snapshot) in
+//            self.index = 0
+//            for child in snapshot.children {
+//                let childSnapshot = snapshot.childSnapshot(forPath: String(self.index))
+//                if let childValue = childSnapshot.value as? [String: Any]? {
+//                    let scholarship = Scholarship.init(dict: childValue!)
+//                    if self.favoritedScholarshipsArray.isEmpty {
+//                        self.favoritedScholarshipsArray.append(scholarship)
+//                    } else {
+//                    for i in (0 ..< self.favoritedScholarshipsArray.count) {
+//                        var cur = self.favoritedScholarshipsArray[i]
+//                        if cur.title != scholarship.title && cur.amount != scholarship.amount {
+//                            if cur.deadline != scholarship.deadline {
+//                                self.favoritedScholarshipsArray.append(scholarship)
+//                            }
+//                        }
+//                    }
+//                }
+//                    self.index += 1
+//                }
+//            }
+//        })
     }
     
     // Table view
