@@ -12,6 +12,9 @@ import FirebaseAuth
 
 class ProfileViewController: UIViewController {
     
+    let userID = Auth.auth().currentUser?.uid
+    var ref: DatabaseReference! = Database.database().reference()
+    
     // Need to display user email
     @IBOutlet weak var userEmailLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
@@ -24,6 +27,7 @@ class ProfileViewController: UIViewController {
         loginButton.layer.borderWidth = 1
         loginButton.layer.borderColor = UIColor.white.cgColor
         loginButton.layer.masksToBounds = true
+        
     }
     
     @IBAction func logOutButtonPressed(_ sender: UIButton) {

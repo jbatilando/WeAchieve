@@ -43,12 +43,11 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                         self.favoritedInternshipsArray.append(internship)
                     } else  {
                         for i in (0 ..< self.favoritedInternshipsArray.count) {
-                            var cur = self.favoritedInternshipsArray[i]
+                            let cur = self.favoritedInternshipsArray[i]
                             if cur.title != internship.title && cur.company != internship.company {
                                 if cur.location != internship.location {
-                                    // && other attribute {
-                                    // append
                                     self.favoritedInternshipsArray.append(internship)
+                                    break
                                 }
                             }
                         }
@@ -68,13 +67,15 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                         self.favoritedScholarshipsArray.append(scholarship)
                     } else {
                         for i in (0 ..< self.favoritedScholarshipsArray.count) {
-                            var cur = self.favoritedScholarshipsArray[i]
+                            let cur = self.favoritedScholarshipsArray[i]
                             if cur.title != scholarship.title && cur.amount != scholarship.amount {
                                 if cur.deadline != scholarship.deadline {
                                     self.favoritedScholarshipsArray.append(scholarship)
+                                    break
                                 }
                             }
                         }
+                        print(self.favoritedScholarshipsArray)
                     }
                     self.index += 1
                 }
@@ -84,53 +85,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-//        ref?.child("Users").child(userID!).child("Internships").observeSingleEvent(of: .value, with: { (snapshot) in
-//            for child in snapshot.children {
-//                let childSnapshot = snapshot.childSnapshot(forPath: String(self.index))
-//                if let childValue = childSnapshot.value as? [String: Any]? {
-//                    let internship = Internship.init(dict: childValue!)
-//                    if self.favoritedInternshipsArray.isEmpty {
-//                        self.favoritedInternshipsArray.append(internship)
-//                    } else  {
-//                        for i in (0 ..< self.favoritedInternshipsArray.count) {
-//                        var cur = self.favoritedInternshipsArray[i]
-//                        if cur.title != internship.title && cur.company != internship.company {
-//                            if cur.location != internship.location {
-//                                // && other attribute {
-//                                // append
-//                                self.favoritedInternshipsArray.append(internship)
-//                            }
-//                        }
-//                }
-//            }
-//                    self.index += 1
-//                }
-//            }
-//        })
-//
-//        ref?.child("Users").child(userID!).child("Scholarships").observeSingleEvent(of: .value, with: { (snapshot) in
-//            self.index = 0
-//            for child in snapshot.children {
-//                let childSnapshot = snapshot.childSnapshot(forPath: String(self.index))
-//                if let childValue = childSnapshot.value as? [String: Any]? {
-//                    let scholarship = Scholarship.init(dict: childValue!)
-//                    if self.favoritedScholarshipsArray.isEmpty {
-//                        self.favoritedScholarshipsArray.append(scholarship)
-//                    } else {
-//                    for i in (0 ..< self.favoritedScholarshipsArray.count) {
-//                        var cur = self.favoritedScholarshipsArray[i]
-//                        if cur.title != scholarship.title && cur.amount != scholarship.amount {
-//                            if cur.deadline != scholarship.deadline {
-//                                self.favoritedScholarshipsArray.append(scholarship)
-//                            }
-//                        }
-//                    }
-//                }
-//                    self.index += 1
-//                }
-//            }
-//        })
+        favoritesTableView.reloadData()
     }
     
     // Table view
@@ -174,6 +129,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             InternshipVC.internshipCo = favoritedInternshipsArray[indexPath.row].company
             InternshipVC.internshipLoc = favoritedInternshipsArray[indexPath.row].location
             InternshipVC.internshipDesc = favoritedInternshipsArray[indexPath.row].description
+            tableView.deselectRow(at: indexPath, animated: true)
             self.navigationController?.pushViewController(InternshipVC, animated: true)
         } else {
             let ScholarshipsVC = storyboard?.instantiateViewController(withIdentifier: "ScholarshipViewController") as! ScholarshipsDetailsViewController
@@ -181,7 +137,26 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             ScholarshipsVC.scholarshipAmnt = favoritedScholarshipsArray[indexPath.row].amount
             ScholarshipsVC.scholarshipDueDate = favoritedScholarshipsArray[indexPath.row].deadline
             ScholarshipsVC.scholarshipDesc = favoritedScholarshipsArray[indexPath.row].description
+            tableView.deselectRow(at: indexPath, animated: true)
             self.navigationController?.pushViewController(ScholarshipsVC, animated: true)
         }
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            print("Deleted")
+            if segmentedControl.selectedSegmentIndex == 0 {
+                let index = indexPath.row
+                let strIndex = String(index)
+                self.favoritedInternshipsArray.remove(at: indexPath.row)
+                ref?.child("Users").child(userID!).child("Internships").child(strIndex)
+            } else {
+                let index = indexPath.row
+                let strIndex = String(index)
+                self.favoritedScholarshipsArray.remove(at: indexPath.row)
+                ref?.child("Users").child(userID!).child("Scholarships").child(strIndex)
+            }
+        }
+    }
+    
 }
