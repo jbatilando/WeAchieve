@@ -14,6 +14,7 @@ class ProfileViewController: UIViewController {
     
     let userID = Auth.auth().currentUser?.uid
     var ref: DatabaseReference! = Database.database().reference()
+    var userEmail: String = "email"
     
     // Need to display user email
     @IBOutlet weak var userEmailLabel: UILabel!
@@ -27,6 +28,12 @@ class ProfileViewController: UIViewController {
         loginButton.layer.borderWidth = 1
         loginButton.layer.borderColor = UIColor.white.cgColor
         loginButton.layer.masksToBounds = true
+        
+        ref?.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            let userData = snapshot.value as? [String:Any]
+            self.userEmail = userData!["email"] as! String
+            self.userEmailLabel.text = self.userEmail
+        })
         
     }
     

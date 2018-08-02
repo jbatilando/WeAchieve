@@ -13,25 +13,17 @@ import FirebaseDatabase
 
 class SearchViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate, SearchCellDelegate, UITableViewDelegate {
     
-    // User ID
     let userID = Auth.auth().currentUser?.uid
     
-    // Variables
     var incrementInternshipIndex = 0
     var incrementScholarshipIndex = 0
     var isLiked = false
     
-    // Firebase Databse ref
     var ref: DatabaseReference! = Database.database().reference()
     
-    // Liked stuff stored in these arrays
     var likedInternships = [Internship]()
     var likedScholarships = [Scholarship]()
     
-    // NS Arrays
-    var uploadInternships: NSMutableArray? // = [Internship]() as! NSMutableArray
-    
-    // Like button pressed
     func likeButtonPressedForInternship(intershipVar: Internship) {
         intershipVar.isLiked = !intershipVar.isLiked
         if intershipVar.isLiked == true {
@@ -40,7 +32,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
             // remove it from array
             // change ui button color
         }
-        // likedInternships.append(intershipVar)
         let dict = intershipVar.convertToDict()
         ref?.child("Users").child(userID!).child("Internships").child(String(incrementInternshipIndex)).updateChildValues(dict)
         incrementInternshipIndex += 1
@@ -59,8 +50,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
         incrementScholarshipIndex += 1
     }
     
-    
-    // Variables
     var internshipArray = [Internship]()
     var scholarshipArray = [Scholarship]()
     var searchInternship = [Internship]()
@@ -69,7 +58,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
     var buttonState = false
     let favoritesVC = FavoritesViewController(nibName: "FavoritesViewController", bundle: nil)
     
-    // Outlets
     @IBOutlet weak var opportunityTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -104,7 +92,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isSearching = false
-        //searchBar.text = ""
         view.endEditing(true)
         opportunityTableView.reloadData()
     }
@@ -138,6 +125,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
                 internshipCell.delegate = self
                 internshipCell.isScholarship = false
                 internshipCell.internshipVar = searchInternship[indexPath.row]
+//                internshipCell.title.adjustsFontSizeToFitWidth = false
+//                internshipCell.title.lineBreakMode = .byTruncatingTail
                 return internshipCell
             } else {
                 scholarshipCell.title.text = searchScholarship[indexPath.row].title
@@ -146,6 +135,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
                 scholarshipCell.delegate = self
                 scholarshipCell.isScholarship = true
                 scholarshipCell.schoalrshipVar = searchScholarship[indexPath.row]
+//                scholarshipCell.title.adjustsFontSizeToFitWidth = false
+//                scholarshipCell.title.lineBreakMode = .byTruncatingTail
                 return scholarshipCell
             }
         } else {

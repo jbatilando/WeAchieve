@@ -31,6 +31,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         registerButton.layer.masksToBounds = true
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//        if Auth.auth().currentUser != nil {
+//            self.performSegue(withIdentifier: "goToHome", sender: self)
+//        }
+    }
+    
     // Outlets
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -59,7 +66,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if let email = emailTextField.text , let password = passwordTextField.text {
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if user != nil {
-                print("user created")
                 let userID = user!.user.uid
                 self.ref = Database.database().reference()
                 self.ref.child("Users").child(userID).setValue(["email" : email, "password": password])
