@@ -14,6 +14,7 @@ class InternshipDetailsViewController: UIViewController {
     var internshipCo = "Co"
     var internshipLoc = "Loc"
     var internshipDesc = "Desc"
+    var internshipURL = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,5 +30,11 @@ class InternshipDetailsViewController: UIViewController {
     @IBOutlet weak var internshipLocation: UILabel?
     @IBOutlet weak var internshipDescription: UITextView?
     
+    @IBAction func applyButtonTapped(_ sender: Any) {
+        let urlString = internshipURL
+        if let url = URL(string: urlString) {
+            UIApplication.shared.open(url, options: [:])
+        }
+    }
     
 }

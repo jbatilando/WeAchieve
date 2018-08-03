@@ -19,7 +19,7 @@ class ProfileViewController: UIViewController {
     // Need to display user email
     @IBOutlet weak var userEmailLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
-    
+    @IBOutlet weak var userNameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +32,13 @@ class ProfileViewController: UIViewController {
         ref?.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
             let userData = snapshot.value as? [String:Any]
             self.userEmail = userData!["email"] as! String
+            if self.userNameLabel.text != "" {
+                self.userNameLabel.text = userData!["name"] as? String
+            }
             self.userEmailLabel.text = self.userEmail
         })
+        
+        UIApplication.shared.statusBarStyle = .lightContent
         
     }
     

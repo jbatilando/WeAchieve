@@ -33,6 +33,10 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     
     var index = 0
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     func loadAllOpportunities() {
         
         ref?.child("Users").child(userID!).child("Internships").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -41,7 +45,11 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                 let snap = child as! DataSnapshot
                 if let childValue = snap.value as? [String: Any]? {
                     let internship = Internship.init(dict: childValue!)
-                    intrarray.append(internship)
+                    if intrarray.contains(where: {$0.title == internship.title}){
+                        break
+                    } else {
+                        intrarray.append(internship)
+                    }
                 }
             }
             self.favoritedInternshipsArray = intrarray
@@ -53,7 +61,11 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                 let snap = child as! DataSnapshot
                 if let childValue = snap.value as? [String: Any]? {
                     let scholarship = Scholarship.init(dict: childValue!)
-                    scharray.append(scholarship)
+                    if scharray.contains(where: {$0.title == scholarship.title}){
+                        break
+                    } else {
+                        scharray.append(scholarship)
+                    }
                 }
             }
             self.favoritedScholarshipsArray = scharray
@@ -64,33 +76,10 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         loadAllOpportunities()
-        
-//        ref?.child("Users").child(userID!).child("Internships").observeSingleEvent(of: .value, with: { (snapshot) in
-//            var intrarray = [Internship]()
-//            for child in snapshot.children {
-//                let snap = child as! DataSnapshot
-//                if let childValue = snap.value as? [String: Any]? {
-//                    let internship = Internship.init(dict: childValue!)
-//                    intrarray.append(internship)
-//                }
-//            }
-//            self.favoritedInternshipsArray = intrarray
-//        })
-//
-//        ref?.child("Users").child(userID!).child("Scholarships").observeSingleEvent(of: .value, with: { (snapshot) in
-//            var scharray = [Scholarship]()
-//            for child in snapshot.children {
-//                let snap = child as! DataSnapshot
-//                if let childValue = snap.value as? [String: Any]? {
-//                    let scholarship = Scholarship.init(dict: childValue!)
-//                    scharray.append(scholarship)
-//                }
-//            }
-//            self.favoritedScholarshipsArray = scharray
-//        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        loadAllOpportunities()
         favoritesTableView.reloadData()
     }
     
@@ -125,8 +114,10 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let InternshipVC = storyboard?.instantiateViewController(withIdentifier: "InternshipViewController") as! InternshipDetailsViewController
+        let ScholarshipsVC = storyboard?.instantiateViewController(withIdentifier: "ScholarshipViewController") as! ScholarshipsDetailsViewController
+        
         if segmentedControl.selectedSegmentIndex == 0 {
-            let InternshipVC = storyboard?.instantiateViewController(withIdentifier: "InternshipViewController") as! InternshipDetailsViewController
             InternshipVC.internshipName = favoritedInternshipsArray[indexPath.row].title
             InternshipVC.internshipCo = favoritedInternshipsArray[indexPath.row].company
             InternshipVC.internshipLoc = favoritedInternshipsArray[indexPath.row].location
@@ -134,7 +125,6 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             tableView.deselectRow(at: indexPath, animated: true)
             self.navigationController?.pushViewController(InternshipVC, animated: true)
         } else {
-            let ScholarshipsVC = storyboard?.instantiateViewController(withIdentifier: "ScholarshipViewController") as! ScholarshipsDetailsViewController
             ScholarshipsVC.scholarshipName = favoritedScholarshipsArray[indexPath.row].title
             ScholarshipsVC.scholarshipAmnt = favoritedScholarshipsArray[indexPath.row].amount
             ScholarshipsVC.scholarshipDueDate = favoritedScholarshipsArray[indexPath.row].deadline
@@ -144,24 +134,38 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            if segmentedControl.selectedSegmentIndex == 0 {
-                let index = indexPath.row
-                let strIndex = String(index)
-                self.favoritedInternshipsArray.remove(at: indexPath.row)
-                ref?.child("Users").child(userID!).child("Internships").child(strIndex).setValue(nil)
-                loadAllOpportunities()
-                favoritesTableView.reloadData()
-            } else {
-                let index = indexPath.row
-                let strIndex = String(index)
-                self.favoritedScholarshipsArray.remove(at: indexPath.row)
-                ref?.child("Users").child(userID!).child("Scholarships").child(strIndex).setValue(nil)
-                loadAllOpportunities()
-                favoritesTableView.reloadData()
-            }
-        }
-    }
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            if segmentedControl.selectedSegmentIndex == 0 {
+//                let index = indexPath.row
+//                let strIndex = String(index)
+//                self.favoritedInternshipsArray.remove(at: indexPath.row)
+//
+//
+//
+//                let thisIsMyBlockOfCodeToCallWhenSetValueIsDone: (Error?, DatabaseReference) -> () = { [weak self] error, desitationReference in
+//                    guard error == nil else {
+//                        fatalError("something went wrong: \(error!.localizedDescription)")
+//                    }
+//
+//                    guard let unwrappedSelf = self else {
+//                        return
+//                    }
+//
+//                    unwrappedSelf.loadAllOpportunities()
+//                    unwrappedSelf.favoritesTableView.reloadData()
+//                }
+//
+//                ref?.child("Users").child(userID!).child("Internships").child().setValue(nil, withCompletionBlock: thisIsMyBlockOfCodeToCallWhenSetValueIsDone)
+//            } else {
+//                let index = indexPath.row
+//                let strIndex = String(index)
+//                //self.favoritedScholarshipsArray.remove(at: indexPath.row)
+//                ref?.child("Users").child(userID!).child("Scholarships").child(strIndex).setValue(nil)
+//                loadAllOpportunities()
+//                favoritesTableView.reloadData()
+//            }
+//        }
+//    }
     
 }

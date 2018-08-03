@@ -15,6 +15,7 @@ class ScholarshipsDetailsViewController: UIViewController {
     var scholarshipAmnt = "Amount"
     var scholarshipDueDate = "Due"
     var scholarshipDesc = "Desc"
+    var scholarshipURL = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,4 +30,12 @@ class ScholarshipsDetailsViewController: UIViewController {
     @IBOutlet weak var scholarshipAmount: UILabel!
     @IBOutlet weak var scholarshipDeadline: UILabel!
     @IBOutlet weak var scholarshipDescription: UITextView!
+    @IBOutlet weak var applyButton: UIButton!
+    
+    @IBAction func applyButtonTapped(_ sender: Any) {
+        let urlString = scholarshipURL
+        if let url = URL(string: urlString) {
+            UIApplication.shared.open(url, options: [:])
+        }
+    }
 }

@@ -33,12 +33,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        if Auth.auth().currentUser != nil {
-//            self.performSegue(withIdentifier: "goToHome", sender: self)
-//        }
+        if Auth.auth().currentUser != nil {
+            self.performSegue(withIdentifier: "goToHome", sender: self)
+        }
     }
     
     // Outlets
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
@@ -63,12 +64,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func registerButtonTapped(_ sender: Any) {
-        if let email = emailTextField.text , let password = passwordTextField.text {
-        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+        if let email = emailTextField.text , let password = passwordTextField.text, let name = nameTextField.text {
+            Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if user != nil {
                 let userID = user!.user.uid
                 self.ref = Database.database().reference()
-                self.ref.child("Users").child(userID).setValue(["email" : email, "password": password])
+                self.ref.child("Users").child(userID).setValue(["email" : email, /* "password": password, */ "name": name])
                 self.emailTextField.text = ""
                 self.passwordTextField.text = ""
                 self.performSegue(withIdentifier: "goToHome", sender: self)
@@ -87,13 +88,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
-    // Dismiss keyboard
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    private func textFieldShouldReturn(textField: UITextField) -> Bool {
         
         textField.resignFirstResponder()
-        //or
-        //self.view.endEditing(true)
-        
         return true
     }
 }
