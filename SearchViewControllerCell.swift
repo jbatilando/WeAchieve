@@ -15,13 +15,13 @@ protocol SearchCellDelegate {
 
 class SearchViewControllerCell: UITableViewCell {
     
-    // Outlets
+    // MARK: - Outlets
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var companyOrAmount: UILabel!
     @IBOutlet weak var locationOrDeadline: UILabel!
     @IBOutlet weak var likeButton: UIButton!
     
-    // Variables
+    // MARK: - Variables
     var delegate: SearchCellDelegate?
     var isScholarship: Bool?
     var internshipVar: Internship?
@@ -34,13 +34,12 @@ class SearchViewControllerCell: UITableViewCell {
         // fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Actions
     @IBAction func likeButtonPressed(_ sender: Any) {
         if isScholarship == true {
             delegate?.likeButtonPressedForScholarship(scholarshipVar: schoalrshipVar!)
-            //likeButton.setImage(#imageLiteral(resourceName: "icons8-star-filled-24"), for: .normal)
         } else {
             delegate?.likeButtonPressedForInternship(intershipVar: internshipVar!)
-            //likeButton.setImage(#imageLiteral(resourceName: "icons8-star-filled-24"), for: .normal)
         }
     }
 }

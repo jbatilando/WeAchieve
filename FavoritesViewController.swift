@@ -12,16 +12,19 @@ import FirebaseDatabase
 
 class FavoritesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var ref: DatabaseReference! = Database.database().reference()
-    let userID = Auth.auth().currentUser?.uid
-    
+    // MARK: - Outlets
     @IBOutlet weak var favoritesTableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    @IBAction func segmentedControlDidChange(_ sender: UISegmentedControl) {
-        favoritesTableView.reloadData()
+    // MARK: - Variables
+    let userID = Auth.auth().currentUser?.uid
+    var ref: DatabaseReference! = Database.database().reference()
+    var index = 0
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
-
+    
     var favoritedInternshipsArray = [Internship](){
         didSet{
             DispatchQueue.main.async {
@@ -30,12 +33,6 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     var favoritedScholarshipsArray = [Scholarship]()
-    
-    var index = 0
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
     
     func loadAllOpportunities() {
         
@@ -122,6 +119,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             InternshipVC.internshipCo = favoritedInternshipsArray[indexPath.row].company
             InternshipVC.internshipLoc = favoritedInternshipsArray[indexPath.row].location
             InternshipVC.internshipDesc = favoritedInternshipsArray[indexPath.row].description
+            InternshipVC.internshipURL = favoritedInternshipsArray[indexPath.row].url
             tableView.deselectRow(at: indexPath, animated: true)
             self.navigationController?.pushViewController(InternshipVC, animated: true)
         } else {
@@ -129,43 +127,15 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             ScholarshipsVC.scholarshipAmnt = favoritedScholarshipsArray[indexPath.row].amount
             ScholarshipsVC.scholarshipDueDate = favoritedScholarshipsArray[indexPath.row].deadline
             ScholarshipsVC.scholarshipDesc = favoritedScholarshipsArray[indexPath.row].description
+            ScholarshipsVC.scholarshipURL = favoritedScholarshipsArray[indexPath.row].url
             tableView.deselectRow(at: indexPath, animated: true)
             self.navigationController?.pushViewController(ScholarshipsVC, animated: true)
         }
     }
     
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            if segmentedControl.selectedSegmentIndex == 0 {
-//                let index = indexPath.row
-//                let strIndex = String(index)
-//                self.favoritedInternshipsArray.remove(at: indexPath.row)
-//
-//
-//
-//                let thisIsMyBlockOfCodeToCallWhenSetValueIsDone: (Error?, DatabaseReference) -> () = { [weak self] error, desitationReference in
-//                    guard error == nil else {
-//                        fatalError("something went wrong: \(error!.localizedDescription)")
-//                    }
-//
-//                    guard let unwrappedSelf = self else {
-//                        return
-//                    }
-//
-//                    unwrappedSelf.loadAllOpportunities()
-//                    unwrappedSelf.favoritesTableView.reloadData()
-//                }
-//
-//                ref?.child("Users").child(userID!).child("Internships").child().setValue(nil, withCompletionBlock: thisIsMyBlockOfCodeToCallWhenSetValueIsDone)
-//            } else {
-//                let index = indexPath.row
-//                let strIndex = String(index)
-//                //self.favoritedScholarshipsArray.remove(at: indexPath.row)
-//                ref?.child("Users").child(userID!).child("Scholarships").child(strIndex).setValue(nil)
-//                loadAllOpportunities()
-//                favoritesTableView.reloadData()
-//            }
-//        }
-//    }
+    // MARK: - Actions
+    @IBAction func segmentedControlDidChange(_ sender: UISegmentedControl) {
+        favoritesTableView.reloadData()
+    }
     
 }

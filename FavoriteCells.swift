@@ -10,6 +10,7 @@ import UIKit
 
 class FavoritesCell: UITableViewCell {
     
+    // MARK: - Outlets
     @IBOutlet weak var positionTitle: UILabel!
     @IBOutlet weak var companyOrAMount: UILabel!
     @IBOutlet weak var locationOrDeadline: UILabel!

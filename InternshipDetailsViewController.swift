@@ -9,6 +9,13 @@ import UIKit
 
 class InternshipDetailsViewController: UIViewController {
     
+    // MARK: - Outlets
+    @IBOutlet weak var internshipPosition: UILabel?
+    @IBOutlet weak var internshipCompany: UILabel?
+    @IBOutlet weak var internshipLocation: UILabel?
+    @IBOutlet weak var internshipDescription: UITextView?
+    
+    // MARK: - Variables
     var internship: Internship?
     var internshipName = "Desc"
     var internshipCo = "Co"
@@ -25,11 +32,7 @@ class InternshipDetailsViewController: UIViewController {
         internshipDescription?.text = internshipDesc
     }
     
-    @IBOutlet weak var internshipPosition: UILabel?
-    @IBOutlet weak var internshipCompany: UILabel?
-    @IBOutlet weak var internshipLocation: UILabel?
-    @IBOutlet weak var internshipDescription: UITextView?
-    
+    // MARK: - Actions
     @IBAction func applyButtonTapped(_ sender: Any) {
         let urlString = internshipURL
         if let url = URL(string: urlString) {

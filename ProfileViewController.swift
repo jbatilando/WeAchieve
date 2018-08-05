@@ -12,14 +12,15 @@ import FirebaseAuth
 
 class ProfileViewController: UIViewController {
     
-    let userID = Auth.auth().currentUser?.uid
-    var ref: DatabaseReference! = Database.database().reference()
-    var userEmail: String = "email"
-    
-    // Need to display user email
+    // MARK: - Outlets
     @IBOutlet weak var userEmailLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var userNameLabel: UILabel!
+    
+    // MARK: - Variables
+    let userID = Auth.auth().currentUser?.uid
+    var ref: DatabaseReference! = Database.database().reference()
+    var userEmail: String = "email"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,15 +34,15 @@ class ProfileViewController: UIViewController {
             let userData = snapshot.value as? [String:Any]
             self.userEmail = userData!["email"] as! String
             if self.userNameLabel.text != "" {
-                self.userNameLabel.text = userData!["name"] as? String
+                self.userNameLabel.text = " " + (userData!["name"] as? String)!
             }
             self.userEmailLabel.text = self.userEmail
         })
         
         UIApplication.shared.statusBarStyle = .lightContent
-        
     }
     
+    // MARK: - Actions
     @IBAction func logOutButtonPressed(_ sender: UIButton) {
         try! Auth.auth().signOut()
         self.dismiss(animated: false, completion: nil)

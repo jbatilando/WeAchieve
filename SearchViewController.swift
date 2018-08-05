@@ -13,55 +13,26 @@ import FirebaseDatabase
 
 class SearchViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate, SearchCellDelegate, UITableViewDelegate {
     
-    let userID = Auth.auth().currentUser?.uid
+    // MARK: - Outlets
+    @IBOutlet var searchView: UIView!
+    @IBOutlet weak var opportunityTableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
+    // MARK: - Variables
+    let userID = Auth.auth().currentUser?.uid
+    let favoritesVC = FavoritesViewController(nibName: "FavoritesViewController", bundle: nil)
     var incrementInternshipIndex = 0
     var incrementScholarshipIndex = 0
     var isLiked = false
-    
     var ref: DatabaseReference! = Database.database().reference()
-    
     var likedInternships = [Internship]()
     var likedScholarships = [Scholarship]()
-    
-    func likeButtonPressedForInternship(intershipVar: Internship) {
-        intershipVar.isLiked = !intershipVar.isLiked
-        if intershipVar.isLiked == true {
-            if likedInternships.contains(where: {$0.title == intershipVar.title}) {
-                ()
-            } else {
-                likedInternships.append(intershipVar)
-            }
-        }
-        let dict = intershipVar.convertToDict()
-        ref?.child("Users").child(userID!).child("Internships").childByAutoId().updateChildValues(dict)
-        incrementInternshipIndex += 1
-    }
-    
-    func likeButtonPressedForScholarship(scholarshipVar: Scholarship) {
-        scholarshipVar.isLiked = !isLiked
-        if scholarshipVar.isLiked == true {
-            if likedScholarships.contains(where: {$0.title == scholarshipVar.title}) {
-                print("do nothing, already added")
-            } else {
-                likedScholarships.append(scholarshipVar)
-            }
-        }
-        let dict = scholarshipVar.convertToDict()
-        ref?.child("Users").child(userID!).child("Scholarships").child(String(incrementScholarshipIndex)).updateChildValues(dict)
-        incrementScholarshipIndex += 1
-    }
-    
     var internshipArray = [Internship]()
     var scholarshipArray = [Scholarship]()
     var searchInternship = [Internship]()
     var searchScholarship = [Scholarship]()
     var isSearching = false
     var buttonState = false
-    let favoritesVC = FavoritesViewController(nibName: "FavoritesViewController", bundle: nil)
-    
-    @IBOutlet weak var opportunityTableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,6 +67,34 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
         isSearching = false
         view.endEditing(true)
         opportunityTableView.reloadData()
+    }
+    
+    func likeButtonPressedForInternship(intershipVar: Internship) {
+        intershipVar.isLiked = !intershipVar.isLiked
+        if intershipVar.isLiked == true {
+            if likedInternships.contains(where: {$0.title == intershipVar.title}) {
+                ()
+            } else {
+                likedInternships.append(intershipVar)
+            }
+        }
+        let dict = intershipVar.convertToDict()
+        ref?.child("Users").child(userID!).child("Internships").childByAutoId().updateChildValues(dict)
+        incrementInternshipIndex += 1
+    }
+    
+    func likeButtonPressedForScholarship(scholarshipVar: Scholarship) {
+        scholarshipVar.isLiked = !isLiked
+        if scholarshipVar.isLiked == true {
+            if likedScholarships.contains(where: {$0.title == scholarshipVar.title}) {
+                print("do nothing, already added")
+            } else {
+                likedScholarships.append(scholarshipVar)
+            }
+        }
+        let dict = scholarshipVar.convertToDict()
+        ref?.child("Users").child(userID!).child("Scholarships").child(String(incrementScholarshipIndex)).updateChildValues(dict)
+        incrementScholarshipIndex += 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -184,6 +183,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
         }
     }
     
+    // MARK: - Opportunities
     private func setupInternships() {
         internshipArray.append(Internship(title: "Year Up IT Internship Program", company: "Year Up", location: "San Francisco", description: "Year Up is an intensive training program that helps urban young adults increase their technical skills and prepare for a career in information technology. The program combines teaching students valuable IT, communication, and professional skills, plus internships at top companies. Year Up offers training programs in Boston, Atlanta, Baltimore, Chicago, New York, Seattle, San Francisco and other locations. Students spend six months learning IT skills and are then placed in an internship with a company needing IT skills. Students are paid a stipend during the internship program. Students also receive mentoring, guidance and expert career advice during the program. To apply, students are not required to have strong technical skills, but they do need basic computer skills. They must have a strong interest in IT and a willingness to work hard and learn. Students applying will be evaluated on their technical and writing skills at the time of admission. About 84 percent of students who graduate from the program are employed or attending college full-time within four months of completing the program. The program is offered by Year Up, a non-profit organization founded in 2000 in Boston, Massachusetts. Their mission is to give urban young adults the skills, experience, and support they need to reach their potential through professional careers and higher education.", url: "https://www.yearup.org/seize-opportunity/", isLiked: false))
         internshipArray.append(Internship(title: "Explore Microsoft Internship Program For Women and Minorities", company: "Microsoft", location: "Redmond, Washington", description: "Explore Microsoft Internship Program is for current college undergraduate minority students pursuing a degree in computer science or software engineering. Students may apply in their freshman or sophomore year of college. Women, minorities (African American, American Indian, Hispanic), and individuals with disabilities are encouraged to apply. The internship program is 12 weeks during the summer at Microsoft. This opportunity gives students first-hand experience in software development and exposure to the field of computer science, computer engineering, or related technical areas. Work includes hands-on projects as well as group projects. Students must be freshman or sophomores in order to apply. They must also have completed an Introduction to Computer Science course or similar class in addition to one semester of calculus by the time the program begins. They must have a passion for a career in technology and an interest in working in the software industry. Microsoft is the largest software developer in the world with over 90,000 employees in more than 100 countries. Their work hard play hard atmosphere attracts top talent from all over the world. The company provides opportunities to grow with the Microsoft Mentor Program, visiting speakers, breakfast meets to discuss new business plans and products, and more. Company employees also enjoy recreation such as company sports teams, singing groups, theater productions, and orchestra performances all planned and performed by Microsoft employees.", url: "https://careers.microsoft.com/us/en/usexploremicrosoftprogram", isLiked: false))

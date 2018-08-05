@@ -10,6 +10,14 @@ import UIKit
 
 class ScholarshipsDetailsViewController: UIViewController {
     
+    // MARK: - Outlets
+    @IBOutlet weak var scholarshipTitle: UILabel!
+    @IBOutlet weak var scholarshipAmount: UILabel!
+    @IBOutlet weak var scholarshipDeadline: UILabel!
+    @IBOutlet weak var scholarshipDescription: UITextView!
+    @IBOutlet weak var applyButton: UIButton!
+    
+    // MARK: - Variables
     var scholarship: Scholarship?
     var scholarshipName = "Name"
     var scholarshipAmnt = "Amount"
@@ -26,12 +34,7 @@ class ScholarshipsDetailsViewController: UIViewController {
         scholarshipDescription?.text = scholarshipDesc
     }
     
-    @IBOutlet weak var scholarshipTitle: UILabel!
-    @IBOutlet weak var scholarshipAmount: UILabel!
-    @IBOutlet weak var scholarshipDeadline: UILabel!
-    @IBOutlet weak var scholarshipDescription: UITextView!
-    @IBOutlet weak var applyButton: UIButton!
-    
+    // MARK: - Actions
     @IBAction func applyButtonTapped(_ sender: Any) {
         let urlString = scholarshipURL
         if let url = URL(string: urlString) {
