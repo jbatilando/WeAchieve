@@ -48,9 +48,8 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                 let snap = child as! DataSnapshot
                 if let childValue = snap.value as? [String: Any]? {
                     let internship = Internship.init(dict: childValue!)
-//                    intrarray.append(internship)
                     if intrarray.contains(where: {$0.title == internship.title && $0.description == internship.description}){
-                        print("do nothing")
+                        print("Internship already added, do nothing")
                     } else {
                         intrarray.append(internship)
                     }
@@ -66,11 +65,10 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                 if let childValue = snap.value as? [String: Any]? {
                     let scholarship = Scholarship.init(dict: childValue!)
                     if scharray.contains(where: {$0.title == scholarship.title && $0.description == scholarship.description}){
-                        print("do nothing")
+                        print("Scholarship already added, do nothing")
                     } else {
                         scharray.append(scholarship)
                     }
-                    // scharray.append(scholarship)
                 }
             }
             self.favoritedScholarshipsArray = scharray

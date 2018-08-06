@@ -73,8 +73,15 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
         intershipVar.isLiked = !intershipVar.isLiked
         if intershipVar.isLiked == true {
             if likedInternships.contains(where: {$0.title == intershipVar.title}) {
-                ()
+                let alert = UIAlertController(title: "Already in favorites!", message: nil, preferredStyle: .alert)
+                let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
             } else {
+                let alert = UIAlertController(title: "Added to favorites! ", message: nil, preferredStyle: .alert)
+                let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
                 likedInternships.append(intershipVar)
             }
         }
@@ -87,8 +94,15 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
         scholarshipVar.isLiked = !isLiked
         if scholarshipVar.isLiked == true {
             if likedScholarships.contains(where: {$0.title == scholarshipVar.title}) {
-                print("do nothing, already added")
+                let alert = UIAlertController(title: "Already in favorites!", message: nil, preferredStyle: .alert)
+                let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
             } else {
+                let alert = UIAlertController(title: "Added to favorites!", message: nil, preferredStyle: .alert)
+                let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
                 likedScholarships.append(scholarshipVar)
             }
         }
