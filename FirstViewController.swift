@@ -29,11 +29,15 @@ class FirstViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction func registerButtonTapped(_ sender: Any) {
-        performSegue(withIdentifier: "goToRegister", sender: (Any).self)
+//        let viewController = (self.storyboard?.instantiateViewController(withIdentifier: "RegisterViewController"))!
+//        self.present(viewController, animated: true, completion: nil)
+        performSegue(withIdentifier: "goToRegister", sender: self)
     }
     
     @IBAction func loginButtonTapped(_ sender: Any) {
-        performSegue(withIdentifier: "goToLogin", sender: (Any).self)
+//        let viewController = (self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController"))!
+//        self.present(viewController, animated: true, completion: nil)
+        performSegue(withIdentifier: "goToLogin", sender: self)
     }
     
     

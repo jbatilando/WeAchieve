@@ -43,9 +43,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if let email = emailTextField.text , let password = passwordTextField.text {
             Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
                 if user != nil {
-                    self.dismiss(animated: false, completion: nil)
-                    self.emailTextField.text = ""
-                    self.passwordTextField.text = ""
+                    
+//                    self.emailTextField.text = ""
+//                    self.passwordTextField.text = ""
+//                    let viewController = (self.storyboard?.instantiateViewController(withIdentifier: "TabBarController"))!
+//                    self.present(viewController, animated: true, completion: nil)
                     self.performSegue(withIdentifier: "goToHome", sender: self)
                 } else {
                     let alert = UIAlertController(title: "Error occurred", message: nil, preferredStyle: .alert)
@@ -57,5 +59,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
 }

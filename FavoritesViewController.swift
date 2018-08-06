@@ -32,7 +32,13 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             }
         }
     }
-    var favoritedScholarshipsArray = [Scholarship]()
+    var favoritedScholarshipsArray = [Scholarship](){
+        didSet{
+            DispatchQueue.main.async {
+                self.favoritesTableView.reloadData()
+            }
+        }
+    }
     
     func loadAllOpportunities() {
         
@@ -42,8 +48,9 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                 let snap = child as! DataSnapshot
                 if let childValue = snap.value as? [String: Any]? {
                     let internship = Internship.init(dict: childValue!)
-                    if intrarray.contains(where: {$0.title == internship.title}){
-                        break
+//                    intrarray.append(internship)
+                    if intrarray.contains(where: {$0.title == internship.title && $0.description == internship.description}){
+                        print("do nothing")
                     } else {
                         intrarray.append(internship)
                     }
@@ -58,11 +65,12 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                 let snap = child as! DataSnapshot
                 if let childValue = snap.value as? [String: Any]? {
                     let scholarship = Scholarship.init(dict: childValue!)
-                    if scharray.contains(where: {$0.title == scholarship.title}){
-                        break
+                    if scharray.contains(where: {$0.title == scholarship.title && $0.description == scholarship.description}){
+                        print("do nothing")
                     } else {
                         scharray.append(scholarship)
                     }
+                    // scharray.append(scholarship)
                 }
             }
             self.favoritedScholarshipsArray = scharray
