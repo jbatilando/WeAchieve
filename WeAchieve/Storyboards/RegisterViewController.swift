@@ -18,6 +18,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var backToHomeButton: UIButton!
     
     // MARK: - Variables
     var ref: DatabaseReference!
@@ -31,13 +32,17 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         registerButton.layer.borderWidth = 1
         registerButton.layer.borderColor = UIColor.white.cgColor
         registerButton.layer.masksToBounds = true
+        backToHomeButton.layer.cornerRadius = backToHomeButton.frame.size.height/2
+        backToHomeButton.layer.borderWidth = 1
+        backToHomeButton.layer.borderColor = UIColor.white.cgColor
+        backToHomeButton.layer.masksToBounds = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if Auth.auth().currentUser != nil {
-            self.performSegue(withIdentifier: "goToHome", sender: self)
-        }
+//        if Auth.auth().currentUser != nil {
+//            self.performSegue(withIdentifier: "goToHome", sender: self)
+//        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -71,5 +76,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             }
         }
         
+    }
+    
+    @IBAction func backToHomeButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
 }

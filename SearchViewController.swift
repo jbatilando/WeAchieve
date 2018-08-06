@@ -66,6 +66,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isSearching = false
         view.endEditing(true)
+        searchBar.text = ""
         opportunityTableView.reloadData()
     }
     
@@ -107,7 +108,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
             }
         }
         let dict = scholarshipVar.convertToDict()
-        ref?.child("Users").child(userID!).child("Scholarships").child(String(incrementScholarshipIndex)).updateChildValues(dict)
+        ref?.child("Users").child(userID!).child("Scholarships").childByAutoId().updateChildValues(dict)
         incrementScholarshipIndex += 1
     }
     
@@ -247,4 +248,3 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
         // Mark - 20
     }
 }
-

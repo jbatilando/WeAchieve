@@ -16,6 +16,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var backToHomeButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginButton.layer.borderWidth = 1
         loginButton.layer.borderColor = UIColor.white.cgColor
         loginButton.layer.masksToBounds = true
+        backToHomeButton.layer.cornerRadius = backToHomeButton.frame.size.height/2
+        backToHomeButton.layer.borderWidth = 1
+        backToHomeButton.layer.borderColor = UIColor.white.cgColor
+        backToHomeButton.layer.masksToBounds = true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -59,7 +64,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+    @IBAction func backToHomeButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
+    
 }
