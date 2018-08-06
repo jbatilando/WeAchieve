@@ -53,12 +53,10 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.selectedScopeButtonIndex == 0 {
-//            searchInternship = internshipArray.filter({$0.title.lowercased().prefix(searchText.count) == searchText.lowercased()})
             searchInternship = internshipArray.filter({$0.description.contains(searchText)})
             isSearching = true
             opportunityTableView.reloadData()
         } else {
-//            searchScholarship = scholarshipArray.filter({$0.title.lowercased().prefix(searchText.count) == searchText.lowercased()})
             searchScholarship = scholarshipArray.filter({$0.description.contains(searchText)})
             isSearching = true
             opportunityTableView.reloadData()
@@ -183,8 +181,10 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if searchBar.selectedScopeButtonIndex == 0 {
         let InternshipVC = storyboard?.instantiateViewController(withIdentifier: "InternshipViewController") as! InternshipDetailsViewController
+        let ScholarshipsVC = storyboard?.instantiateViewController(withIdentifier: "ScholarshipViewController") as! ScholarshipsDetailsViewController
+        
+        if searchBar.selectedScopeButtonIndex == 0 && !searchInternship.isEmpty {
         InternshipVC.internshipName = searchInternship[indexPath.row].title
         InternshipVC.internshipCo = searchInternship[indexPath.row].company
         InternshipVC.internshipLoc = searchInternship[indexPath.row].location
@@ -192,8 +192,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
         InternshipVC.internshipURL = searchInternship[indexPath.row].url
         tableView.deselectRow(at: indexPath, animated: true)
         self.navigationController?.pushViewController(InternshipVC, animated: true)
-        } else {
-            let ScholarshipsVC = storyboard?.instantiateViewController(withIdentifier: "ScholarshipViewController") as! ScholarshipsDetailsViewController
+        } else if searchBar.selectedScopeButtonIndex == 0 && !searchScholarship.isEmpty {
             ScholarshipsVC.scholarshipName = searchScholarship[indexPath.row].title
             ScholarshipsVC.scholarshipAmnt = searchScholarship[indexPath.row].amount
             ScholarshipsVC.scholarshipDueDate = searchScholarship[indexPath.row].deadline
@@ -201,7 +200,25 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
             ScholarshipsVC.scholarshipURL = searchScholarship[indexPath.row].url
             tableView.deselectRow(at: indexPath, animated: true)
             self.navigationController?.pushViewController(ScholarshipsVC, animated: true)
+        } else if searchBar.selectedScopeButtonIndex == 0 {
+            InternshipVC.internshipName = internshipArray[indexPath.row].title
+            InternshipVC.internshipCo = internshipArray[indexPath.row].company
+            InternshipVC.internshipLoc = internshipArray[indexPath.row].location
+            InternshipVC.internshipDesc = internshipArray[indexPath.row].description
+            InternshipVC.internshipURL = internshipArray[indexPath.row].url
+            tableView.deselectRow(at: indexPath, animated: true)
+            self.navigationController?.pushViewController(InternshipVC, animated: true)
+        } else {
+            ScholarshipsVC.scholarshipName = scholarshipArray[indexPath.row].title
+            ScholarshipsVC.scholarshipAmnt = scholarshipArray[indexPath.row].amount
+            ScholarshipsVC.scholarshipDueDate = scholarshipArray[indexPath.row].deadline
+            ScholarshipsVC.scholarshipDesc = scholarshipArray[indexPath.row].description
+            ScholarshipsVC.scholarshipURL = scholarshipArray[indexPath.row].url
+            tableView.deselectRow(at: indexPath, animated: true)
+            self.navigationController?.pushViewController(ScholarshipsVC, animated: true)
         }
+        
+        
     }
     
     // MARK: - Opportunities
