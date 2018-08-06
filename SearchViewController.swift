@@ -53,11 +53,13 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.selectedScopeButtonIndex == 0 {
-            searchInternship = internshipArray.filter({$0.title.lowercased().prefix(searchText.count) == searchText.lowercased()})
+//            searchInternship = internshipArray.filter({$0.title.lowercased().prefix(searchText.count) == searchText.lowercased()})
+            searchInternship = internshipArray.filter({$0.description.contains(searchText)})
             isSearching = true
             opportunityTableView.reloadData()
         } else {
-            searchScholarship = scholarshipArray.filter({$0.title.lowercased().prefix(searchText.count) == searchText.lowercased()})
+//            searchScholarship = scholarshipArray.filter({$0.title.lowercased().prefix(searchText.count) == searchText.lowercased()})
+            searchScholarship = scholarshipArray.filter({$0.description.contains(searchText)})
             isSearching = true
             opportunityTableView.reloadData()
         }
@@ -66,7 +68,11 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isSearching = false
         view.endEditing(true)
-        searchBar.text = ""
+        opportunityTableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
         opportunityTableView.reloadData()
     }
     
@@ -179,20 +185,20 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if searchBar.selectedScopeButtonIndex == 0 {
         let InternshipVC = storyboard?.instantiateViewController(withIdentifier: "InternshipViewController") as! InternshipDetailsViewController
-        InternshipVC.internshipName = internshipArray[indexPath.row].title
-        InternshipVC.internshipCo = internshipArray[indexPath.row].company
-        InternshipVC.internshipLoc = internshipArray[indexPath.row].location
-        InternshipVC.internshipDesc = internshipArray[indexPath.row].description
-        InternshipVC.internshipURL = internshipArray[indexPath.row].url
+        InternshipVC.internshipName = searchInternship[indexPath.row].title
+        InternshipVC.internshipCo = searchInternship[indexPath.row].company
+        InternshipVC.internshipLoc = searchInternship[indexPath.row].location
+        InternshipVC.internshipDesc = searchInternship[indexPath.row].description
+        InternshipVC.internshipURL = searchInternship[indexPath.row].url
         tableView.deselectRow(at: indexPath, animated: true)
         self.navigationController?.pushViewController(InternshipVC, animated: true)
         } else {
             let ScholarshipsVC = storyboard?.instantiateViewController(withIdentifier: "ScholarshipViewController") as! ScholarshipsDetailsViewController
-            ScholarshipsVC.scholarshipName = scholarshipArray[indexPath.row].title
-            ScholarshipsVC.scholarshipAmnt = scholarshipArray[indexPath.row].amount
-            ScholarshipsVC.scholarshipDueDate = scholarshipArray[indexPath.row].deadline
-            ScholarshipsVC.scholarshipDesc = scholarshipArray[indexPath.row].description
-            ScholarshipsVC.scholarshipURL = scholarshipArray[indexPath.row].url
+            ScholarshipsVC.scholarshipName = searchScholarship[indexPath.row].title
+            ScholarshipsVC.scholarshipAmnt = searchScholarship[indexPath.row].amount
+            ScholarshipsVC.scholarshipDueDate = searchScholarship[indexPath.row].deadline
+            ScholarshipsVC.scholarshipDesc = searchScholarship[indexPath.row].description
+            ScholarshipsVC.scholarshipURL = searchScholarship[indexPath.row].url
             tableView.deselectRow(at: indexPath, animated: true)
             self.navigationController?.pushViewController(ScholarshipsVC, animated: true)
         }
