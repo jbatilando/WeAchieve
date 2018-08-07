@@ -854,6 +854,7 @@
                         <outlet property="registerButton" destination="KoF-vS-UUc" id="1pP-fH-BHk"/>
                         <segue destination="xEw-ny-Phd" kind="show" identifier="goToRegister" id="qNg-BE-y1K"/>
                         <segue destination="cOJ-e7-7TK" kind="show" identifier="goToLogin" id="lcV-jQ-dKE"/>
+                        <segue destination="eDx-05-2i0" kind="show" identifier="goToHome" id="1eU-Gy-5KF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgR-eS-paN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1046,6 +1047,6 @@
         <image name="icons8-user-24" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Wjs-cf-1vg"/>
+        <segue reference="1eU-Gy-5KF"/>
     </inferredMetricsTieBreakers>
 </document>

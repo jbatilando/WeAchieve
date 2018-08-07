@@ -40,9 +40,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        if Auth.auth().currentUser != nil {
-//            self.performSegue(withIdentifier: "goToHome", sender: self)
-//        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class FirstViewController: UIViewController {
     
@@ -27,16 +29,20 @@ class FirstViewController: UIViewController {
         registerButton.layer.masksToBounds = true
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let user = Auth.auth().currentUser {
+            self.performSegue(withIdentifier: "goToHome", sender: self)
+        }
+    }
+    
     // MARK: - Actions
     @IBAction func registerButtonTapped(_ sender: Any) {
-//        let viewController = (self.storyboard?.instantiateViewController(withIdentifier: "RegisterViewController"))!
-//        self.present(viewController, animated: true, completion: nil)
         performSegue(withIdentifier: "goToRegister", sender: self)
     }
     
     @IBAction func loginButtonTapped(_ sender: Any) {
-//        let viewController = (self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController"))!
-//        self.present(viewController, animated: true, completion: nil)
         performSegue(withIdentifier: "goToLogin", sender: self)
     }
     
