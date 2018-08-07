@@ -63,19 +63,6 @@
             </objects>
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="BJW-rA-BgT">
-            <objects>
-                <viewController id="ROj-xz-HKY" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="VkY-tc-Ltg">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RBV-cn-Oek" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
     </scenes>
     <resources>
         <image name="AchieveAppIcon" width="1024" height="1024"/>
