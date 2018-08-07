@@ -21,8 +21,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
     // MARK: - Variables
     let userID = Auth.auth().currentUser?.uid
     let favoritesVC = FavoritesViewController(nibName: "FavoritesViewController", bundle: nil)
-    var incrementInternshipIndex = 0
-    var incrementScholarshipIndex = 0
     var isLiked = false
     var ref: DatabaseReference! = Database.database().reference()
     var likedInternships = [Internship]()
@@ -92,7 +90,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
         }
         let dict = intershipVar.convertToDict()
         ref?.child("Users").child(userID!).child("Internships").childByAutoId().updateChildValues(dict)
-        incrementInternshipIndex += 1
     }
     
     func likeButtonPressedForScholarship(scholarshipVar: Scholarship) {
@@ -113,7 +110,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
         }
         let dict = scholarshipVar.convertToDict()
         ref?.child("Users").child(userID!).child("Scholarships").childByAutoId().updateChildValues(dict)
-        incrementScholarshipIndex += 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -192,7 +188,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
         InternshipVC.internshipURL = searchInternship[indexPath.row].url
         tableView.deselectRow(at: indexPath, animated: true)
         self.navigationController?.pushViewController(InternshipVC, animated: true)
-        } else if searchBar.selectedScopeButtonIndex == 0 && !searchScholarship.isEmpty {
+        } else if searchBar.selectedScopeButtonIndex == 1 && !searchScholarship.isEmpty {
             ScholarshipsVC.scholarshipName = searchScholarship[indexPath.row].title
             ScholarshipsVC.scholarshipAmnt = searchScholarship[indexPath.row].amount
             ScholarshipsVC.scholarshipDueDate = searchScholarship[indexPath.row].deadline
