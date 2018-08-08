@@ -54,3 +54,5 @@ FirebaseDatabase
 ### Attributions
 
 Icons from https://icons8.com/
+
+Some opportunities are taken from Scholarships.com - I do not own those descriptions
