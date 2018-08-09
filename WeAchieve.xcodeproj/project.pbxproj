@@ -462,7 +462,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mbatilando.*";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mbatilando.achieve;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4427ac24-92cf-4ad9-bfc9-b4dc1bc195ea";
 				PROVISIONING_PROFILE_SPECIFIER = AchieveDevelopmentProfile;
@@ -486,7 +486,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mbatilando.*";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mbatilando.achieve;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4427ac24-92cf-4ad9-bfc9-b4dc1bc195ea";
 				PROVISIONING_PROFILE_SPECIFIER = AchieveDistributionProfile;
