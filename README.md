@@ -56,3 +56,6 @@ FirebaseDatabase
 Icons from https://icons8.com/
 
 Some opportunities are taken from Scholarships.com - I do not own those descriptions
+
+## Notes
+No API was used in this project. Internships and scholarships are created through setUpInternships() and setUpScholarships() methods.
